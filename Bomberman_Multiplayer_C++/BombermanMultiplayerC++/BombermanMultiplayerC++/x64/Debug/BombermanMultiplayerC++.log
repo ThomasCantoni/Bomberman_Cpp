@@ -1,0 +1,15 @@
+﻿  Map.cpp
+E:\Hard disk vecchio\scola\Anno 3\Softwares\C++\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanMultiplayerC++\Transform.h(57,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\Hard disk vecchio\scola\Anno 3\Softwares\C++\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanMultiplayerC++\Transform.h(58,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\Hard disk vecchio\scola\Anno 3\Softwares\C++\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanMultiplayerC++\Transform.h(82,30): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+E:\Hard disk vecchio\scola\Anno 3\Softwares\C++\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanMultiplayerC++\Transform.h(83,30): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+E:\Hard disk vecchio\scola\Anno 3\Softwares\C++\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanMultiplayerC++\Transform.h(93,1): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+E:\Hard disk vecchio\scola\Anno 3\Softwares\C++\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanMultiplayerC++\Transform.h(94,1): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+E:\Hard disk vecchio\scola\Anno 3\Softwares\C++\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanMultiplayerC++\byteconverter.cpp(95,2): warning C4091: 'static ': ignored on left of 'byteconverter' when no variable is declared
+E:\Hard disk vecchio\scola\Anno 3\Softwares\C++\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanMultiplayerC++\NetworkManager.cpp(91,10): warning C4244: 'argument': conversion from 'SOCKET' to 'int', possible loss of data
+E:\Hard disk vecchio\scola\Anno 3\Softwares\C++\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanMultiplayerC++\Map.cpp(50,56): warning C4838: conversion from 'const float' to 'int' requires a narrowing conversion
+E:\Hard disk vecchio\scola\Anno 3\Softwares\C++\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanMultiplayerC++\Map.cpp(50,56): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+E:\Hard disk vecchio\scola\Anno 3\Softwares\C++\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanMultiplayerC++\Map.cpp(50,90): warning C4838: conversion from 'const float' to 'int' requires a narrowing conversion
+E:\Hard disk vecchio\scola\Anno 3\Softwares\C++\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanMultiplayerC++\Map.cpp(50,90): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+E:\Hard disk vecchio\scola\Anno 3\Softwares\C++\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanMultiplayerC++\Vector2.h(77): warning C4172: returning address of local variable or temporary
+  BombermanMultiplayerC++.vcxproj -> E:\Hard disk vecchio\scola\Anno 3\Softwares\C++\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\x64\Debug\BombermanMultiplayerC++.exe
