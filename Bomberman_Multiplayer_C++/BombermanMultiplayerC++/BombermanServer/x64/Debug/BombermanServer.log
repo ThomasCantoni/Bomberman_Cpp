@@ -1,0 +1,17 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (BombermanCppServer.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  ActorData.cpp
+  main.cpp
+  PlayerData.cpp
+  Server.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xutility(275,77): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\memory(1983): message : see reference to function template instantiation 'void std::_Construct_in_place<_Ty,int&,int&,int&,int&,bool&>(_Ty &,int &,int &,int &,int &,bool &) noexcept(false)' being compiled
+          with
+          [
+              _Ty=Bomberman::Tile
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\memory(2663): message : see reference to function template instantiation 'std::_Ref_count_obj2<Bomberman::Tile>::_Ref_count_obj2<int&,int&,int&,int&,bool&>(int &,int &,int &,int &,bool &)' being compiled
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\memory(2664,20): message : see reference to function template instantiation 'std::_Ref_count_obj2<Bomberman::Tile>::_Ref_count_obj2<int&,int&,int&,int&,bool&>(int &,int &,int &,int &,bool &)' being compiled
+C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanServer\Server.cpp(195,58): message : see reference to function template instantiation 'std::shared_ptr<Bomberman::Tile> std::make_shared<Bomberman::Tile,int&,int&,int&,int&,bool&>(int &,int &,int &,int &,bool &)' being compiled
+  Generating Code...
+LINK : warning LNK4300: ignoring '/INCREMENTAL' because input module contains ASAN metadata
+  BombermanServer.vcxproj -> C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\x64\Debug\BombermanServer.exe

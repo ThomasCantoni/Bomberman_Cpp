@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\x64\Debug\BombermanClient.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanClient\server_python.py</FullPath>
+    </ContentFile>
+  </ContentFiles>
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

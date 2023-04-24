@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Include\Engine">
+      <UniqueIdentifier>{2f3b052f-0f20-47fa-9426-f5a0892f6452}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Engine\Physics">
+      <UniqueIdentifier>{27bf7452-fd3e-4a1b-ac76-d1b84f53a7d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Maps">
+      <UniqueIdentifier>{f4fec21e-ad38-45fd-90be-eea32cde60e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Engine\STOLEN">
+      <UniqueIdentifier>{66c44003-74f2-4cd0-83de-893de184ca02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Engine\Actors">
+      <UniqueIdentifier>{86f45988-57be-4b18-9a8a-394eb3599688}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Engine\Actors\MapObject">
+      <UniqueIdentifier>{3a1c2594-8acc-425e-bd48-23a0b49465cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Engine\Network">
+      <UniqueIdentifier>{5fcbf63d-2b88-4426-a174-56af85a6bb85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{1965be20-b1b2-4b23-ac26-5c7cecd5616d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Physics">
+      <UniqueIdentifier>{fbfda9bc-9666-4774-bdb2-f3159cb50c49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Interfaces">
+      <UniqueIdentifier>{00f542ad-92c7-42e6-b827-cd451d8e9d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Network">
+      <UniqueIdentifier>{cb4b192d-2f45-45f2-aff2-407fb7829d6c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="server_python.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\BombermanCore\Include\Maps\map1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="materials\EGGOLD.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="materials\eggsplosion.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="materials\paperella.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

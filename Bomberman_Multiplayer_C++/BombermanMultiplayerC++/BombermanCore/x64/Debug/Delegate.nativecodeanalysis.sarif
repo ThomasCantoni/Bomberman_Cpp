@@ -1,0 +1,822 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.29.30148.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine": "\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX86\\x64\\c1xx.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x006CC1B0 -il C:\\Users\\utente\\AppData\\Local\\Temp\\_CL_32d80951ast -typedil -f Include\\Engine\\Delegate.cpp -Ze -D_MSC_EXTENSIONS -Zp16 -pc \\:/ -D_MSC_VER=1929 -D_MSC_FULL_VER=192930148 -D_MSC_BUILD=0 -D_M_AMD64=100 -ZILP448 -D_M_X64=100 -D_WIN64 -D_WIN32 -GR -D_CPPRTTI -I C:\\Users\\utente\\Desktop\\Hard disk vecchio\\scola\\Anno 3\\Softwares\\C++\\BombermanRepo\\Bomberman_Multiplayer_C++\\BombermanMultiplayerC++\\BombermanCore\\SDL2_image-2.6.3\\include -I C:\\Users\\utente\\Desktop\\Hard disk vecchio\\scola\\Anno 3\\Softwares\\C++\\BombermanRepo\\Bomberman_Multiplayer_C++\\BombermanMultiplayerC++\\BombermanCore\\SDL2-2.26.0\\include -nologo -W 3 -diagnostics:column -D_GUARDOVERFLOW_CRT_ALLOCATORS=1 -Ot -DCODE_ANALYSIS -D_DEBUG -D_CONSOLE -D_UNICODE -DUNICODE -EHs -D_CPPUNWIND -EHc -D__MSVC_RUNTIME_CHECKS -RTCs -RTCu -MDd -D_DEBUG -D_MT -D_DLL -GS -D_M_FP_PRECISE -permissive- -Zc:wchar_t -Zc:forScope -Fox64\\Debug\\Delegate.obj -FdC:\\Users\\utente\\Desktop\\Hard disk vecchio\\scola\\Anno 3\\Softwares\\C++\\BombermanRepo\\Bomberman_Multiplayer_C++\\BombermanMultiplayerC++\\x64\\Debug\\BombermanCore.pdb -external:W 3 -Gd -analyze:projectdirectory C:\\Users\\utente\\Desktop\\Hard disk vecchio\\scola\\Anno 3\\Softwares\\C++\\BombermanRepo\\Bomberman_Multiplayer_C++\\BombermanMultiplayerC++\\BombermanCore -analyze:rulesetdirectory ;C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX86\\x86\\EspXEngine.dll -FC -errorreport:prompt -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\atlmfc\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.20348.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.20348.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.20348.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.20348.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.20348.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -external:I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\include -external:I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\atlmfc\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\atlmfc\\include -external:I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.20348.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.20348.0\\ucrt -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.20348.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.20348.0\\um -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.20348.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.20348.0\\shared -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.20348.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.20348.0\\winrt -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.20348.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.20348.0\\cppwinrt -external:I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/bombermantime.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "bec4c833d98260efcf60ad3d151bda2d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/bombermantime.h"
+          },
+          "hashes": {
+            "md5": "c421e00bd02a567f92444594453874fa"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/utente/Desktop/Hard disk vecchio/scola/Anno 3/Softwares/C++/BombermanRepo/Bomberman_Multiplayer_C++/BombermanMultiplayerC++/BombermanCore/SDL2-2.26.0/include/SDL_rect.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "7125a779d30cd477e1e2aedbc0e80dff"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/utente/Desktop/Hard disk vecchio/scola/Anno 3/Softwares/C++/BombermanRepo/Bomberman_Multiplayer_C++/BombermanMultiplayerC++/BombermanCore/Include/Engine/byteconverter.cpp"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "73423f413879c1bd2fd8d8c7f6b799df"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/texturefactory.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "92b070cab275b94cf13541c03f41668a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/texturefactory.h"
+          },
+          "hashes": {
+            "md5": "7133b55e2bd89af6683834667e8978ca"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/actor.h"
+          },
+          "hashes": {
+            "md5": "a99b45b63930966aede818cf4ba626ed"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/iupdatable.h"
+          },
+          "hashes": {
+            "md5": "8bab1c2d912fff5ac4b57b1f65d6dc2b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/updatemgr.h"
+          },
+          "hashes": {
+            "md5": "d599d09ba936ab10efdc7bc36b861fd9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2_image-2.6.3/include/sdl_image.h"
+          },
+          "hashes": {
+            "md5": "e55464ef9164dd848eb73492c074a3fb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl.h"
+          },
+          "hashes": {
+            "md5": "7de92219697d009c0cf1f6af6d16ec63"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_main.h"
+          },
+          "hashes": {
+            "md5": "5990d5714f5b9684c59a8a8150b5fbcc"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_stdinc.h"
+          },
+          "hashes": {
+            "md5": "07ffdf17855271d32c0ba2ed66254f7c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_config.h"
+          },
+          "hashes": {
+            "md5": "09b633f7947523e3774b0bd188550839"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_platform.h"
+          },
+          "hashes": {
+            "md5": "1ee51941b4947921c12ca46d71ae75c0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/begin_code.h"
+          },
+          "hashes": {
+            "md5": "432527df7facd236deefda12448b9adc"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/close_code.h"
+          },
+          "hashes": {
+            "md5": "341027f5027f0c4b7da605c4853e008f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_assert.h"
+          },
+          "hashes": {
+            "md5": "c18a922382c33dceac70c11a8e328bcf"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_atomic.h"
+          },
+          "hashes": {
+            "md5": "7f191ac2886f81ff8f7fe5a15b5a095a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_audio.h"
+          },
+          "hashes": {
+            "md5": "e96539d16ff13039a043b0746f7050ab"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_error.h"
+          },
+          "hashes": {
+            "md5": "1f9a1f76bab26ff59c21bd8e86fe4a3b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_endian.h"
+          },
+          "hashes": {
+            "md5": "630c83e4fe36ce50624445a6524a2575"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_mutex.h"
+          },
+          "hashes": {
+            "md5": "14ce07e8ae511e1d26bf580db3aae386"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_thread.h"
+          },
+          "hashes": {
+            "md5": "f6ffde2da13220ce5385df0216ef99ff"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_rwops.h"
+          },
+          "hashes": {
+            "md5": "bdc878e9cb3f7f852ec1ae84f74dae92"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_clipboard.h"
+          },
+          "hashes": {
+            "md5": "e6c8fafd630bd334a87c892b954fe4e6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_cpuinfo.h"
+          },
+          "hashes": {
+            "md5": "9b2a635ce862c1c1abf183e1ff6abb93"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_events.h"
+          },
+          "hashes": {
+            "md5": "83c93c7fc4179a7041315bfe39eca5d1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_video.h"
+          },
+          "hashes": {
+            "md5": "28f6426f68bfc5b2eb9244e7dcda3979"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_pixels.h"
+          },
+          "hashes": {
+            "md5": "2cf810058830026af8e3ea5df3649306"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_surface.h"
+          },
+          "hashes": {
+            "md5": "7169a2c17042c4cf2f29a99fb3f2b59c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_blendmode.h"
+          },
+          "hashes": {
+            "md5": "b8afce90f604508b4dfa81feed7b7f69"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_keyboard.h"
+          },
+          "hashes": {
+            "md5": "6ee1dbab2121d9c4b3944f2c8319be49"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_keycode.h"
+          },
+          "hashes": {
+            "md5": "cd4c85285e7ac2253589f7b85e635a64"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_scancode.h"
+          },
+          "hashes": {
+            "md5": "e6f23cc05509e33a1c16c453d4dbb9f9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_mouse.h"
+          },
+          "hashes": {
+            "md5": "c7a4906a5cde56d2e388053cdee8a45c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_joystick.h"
+          },
+          "hashes": {
+            "md5": "da0ea72a9ff051b13a6ef6432f550fb2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_guid.h"
+          },
+          "hashes": {
+            "md5": "f7975e41359eaf33efa7d8fb3ba18a8a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_gamecontroller.h"
+          },
+          "hashes": {
+            "md5": "45dc0c3673e6073daf97bab560e1acac"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_sensor.h"
+          },
+          "hashes": {
+            "md5": "fcbf618d84c9fad82506f9c63b04d796"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_quit.h"
+          },
+          "hashes": {
+            "md5": "48e23c0ec6ebf5b0b9c8ef9641a69024"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_gesture.h"
+          },
+          "hashes": {
+            "md5": "e79cc768ab4120828a5cb4ad1bdd4999"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_touch.h"
+          },
+          "hashes": {
+            "md5": "22c4be994dedc533a687ad23b3286e9b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_filesystem.h"
+          },
+          "hashes": {
+            "md5": "9a37cedb5a114b9510aa865043ca5a95"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_haptic.h"
+          },
+          "hashes": {
+            "md5": "566958fe1f9c7da91905a26dbc560b23"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_hidapi.h"
+          },
+          "hashes": {
+            "md5": "f1cb6611ff2f2e3308b3f780fd159827"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_hints.h"
+          },
+          "hashes": {
+            "md5": "1a3b909daaaff1429a237892dab7de51"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_loadso.h"
+          },
+          "hashes": {
+            "md5": "781c011c55e36d19928a7cf032676c33"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_log.h"
+          },
+          "hashes": {
+            "md5": "17b85a9100abeecd58ee205855202a49"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_messagebox.h"
+          },
+          "hashes": {
+            "md5": "0f96c969c09c1f5284482b02e43e4b2e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_metal.h"
+          },
+          "hashes": {
+            "md5": "7953e3450790d262577e82ab920a94ff"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_power.h"
+          },
+          "hashes": {
+            "md5": "6e9a7a77ca6bf21e7cdbd6888c8a9c88"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_render.h"
+          },
+          "hashes": {
+            "md5": "e14da3fd98f97e0df7e914e5c4645cba"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_shape.h"
+          },
+          "hashes": {
+            "md5": "4c829b1b3a03884214ac05766dc26e71"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_system.h"
+          },
+          "hashes": {
+            "md5": "c399b36f2f87e959fe9073916917f7b8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_timer.h"
+          },
+          "hashes": {
+            "md5": "76987b6e48366b6b2daf9273bfc55a46"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_version.h"
+          },
+          "hashes": {
+            "md5": "186ef832559e6171ec3af43270808038"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_locale.h"
+          },
+          "hashes": {
+            "md5": "489e899bc86f11daf122189bda61008e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/sdl2-2.26.0/include/sdl_misc.h"
+          },
+          "hashes": {
+            "md5": "8bc6152f5e6d27490aec9e790735f9a1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/sdl_object.h"
+          },
+          "hashes": {
+            "md5": "f0dd5d3ce46a491ba6ec054140a68520"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/inetobject.h"
+          },
+          "hashes": {
+            "md5": "364b025cda07b183e6128112c929a8f4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/byteconverter.h"
+          },
+          "hashes": {
+            "md5": "85f9cc54af9833f0de70a98d44eff831"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/transform.h"
+          },
+          "hashes": {
+            "md5": "aaf0b8bb388585ee8ac70bce660a8f23"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/vector2.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "63befb874e8641d128bdf9151692211b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/sdl_object.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "d032dde83a2f0a04831cb759c73c5c58"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/scenemanager.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "32f2e284d403b02d8c23c60c66bf97b5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/scenemanager.h"
+          },
+          "hashes": {
+            "md5": "0122e7d45cd73f9fae714c8f88f5f8fc"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/scene.h"
+          },
+          "hashes": {
+            "md5": "6de58e2aa0a1a412b146cf57d5df0695"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/map.h"
+          },
+          "hashes": {
+            "md5": "20efdba63a8df11839fafc65000626a0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/player.h"
+          },
+          "hashes": {
+            "md5": "d17e81212732c28ce14ef8d27f470e0b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/bombermanclientmgr.h"
+          },
+          "hashes": {
+            "md5": "adaa7beead0eacd9d25ad51d90e50eaa"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/networkbase.h"
+          },
+          "hashes": {
+            "md5": "c486068de066a2eaad3868b7d1d1b699"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/onlineplayer.h"
+          },
+          "hashes": {
+            "md5": "eb84381fa380bca7e6166ff917eef254"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/iattack.h"
+          },
+          "hashes": {
+            "md5": "bff7cd59f56891661c7a2b1f38b32034"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/eggbomb.h"
+          },
+          "hashes": {
+            "md5": "3b67ed763ef0de7b0cfbad11efaeaac5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/eggsplosion.h"
+          },
+          "hashes": {
+            "md5": "b610536ed6a510eb301946a0f5ba253b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/delegates.h"
+          },
+          "hashes": {
+            "md5": "e136d994cba038b8d6a65d37a20893dd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/rigidbody.h"
+          },
+          "hashes": {
+            "md5": "756232bffcb7b04fbab3ff79c27cf5f4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/collider.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "0e800ca6147c9807013a139f7efa84ce"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/scene.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "fae500bb3ebb7abd1988c282051cabce"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/rigidbody.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "b506167425a6cd7a79efabd8e3a4dae8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/physicsmgr.h"
+          },
+          "hashes": {
+            "md5": "3ecc9e919bff3d85551bd1b1f5444c79"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/utente/Desktop/Hard disk vecchio/scola/Anno 3/Softwares/C++/BombermanRepo/Bomberman_Multiplayer_C++/BombermanMultiplayerC++/BombermanCore/Include/Engine/Player.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "bd6a6a9aaeb60a20c612f0f2ffae93ab"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/colliderfactory.h"
+          },
+          "hashes": {
+            "md5": "8d82715e969a576b34bb2dbce6c3e66f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/physicsmgr.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "b78b0f3274e49b2e44f5eb8cd245e352"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/onlineplayer.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "7ae76cf2868b0761474a258cf97ed03e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/utente/Desktop/Hard disk vecchio/scola/Anno 3/Softwares/C++/BombermanRepo/Bomberman_Multiplayer_C++/BombermanMultiplayerC++/BombermanCore/Include/Engine/BombermanClientMgr.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "6cda3f43234483df45ff03b00b71e95d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/utente/Desktop/Hard disk vecchio/scola/Anno 3/Softwares/C++/BombermanRepo/Bomberman_Multiplayer_C++/BombermanMultiplayerC++/BombermanCore/Include/Engine/Map.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "b6df4c34be53b628204fd20ad0932238"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/old_main.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "7a143da26364a37629e78543f21751bd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/utente/Desktop/Hard disk vecchio/scola/Anno 3/Softwares/C++/BombermanRepo/Bomberman_Multiplayer_C++/BombermanMultiplayerC++/BombermanCore/Include/Engine/Eggsplosion.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "16b4bfd409b75491600149195c79647a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/eggbomb.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "4d791e661ad7d05e058d4de1bd8111d7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/utente/desktop/hard disk vecchio/scola/anno 3/softwares/c++/bombermanrepo/bomberman_multiplayer_c++/bombermanmultiplayerc++/bombermancore/include/engine/delegate.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "290137eff26ad94fc216bcc70f44a4f3"
+          }
+        }
+      ]
+    }
+  ]
+}

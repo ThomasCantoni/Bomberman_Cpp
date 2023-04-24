@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{cbda808f-f62e-4383-8ac8-64b716abec63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Physics">
+      <UniqueIdentifier>{18479c86-a3ca-4c74-a54b-53a827a7bedb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Interfaces">
+      <UniqueIdentifier>{f0e5861a-1668-4297-b262-601cfa75c19a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Network">
+      <UniqueIdentifier>{82a80d8a-080e-45af-b6bd-381ab1144962}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{22e005d9-2eb5-4d8c-80b1-73e159d71a99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Physics">
+      <UniqueIdentifier>{bfef467f-467b-4a2c-85f2-9646e60e1650}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\STOLEN">
+      <UniqueIdentifier>{df5c992c-04d6-4995-a0ee-92c9d798f144}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Actors">
+      <UniqueIdentifier>{125d93a3-ca7f-465a-8bf9-e2fde1886886}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Actors\MapObject">
+      <UniqueIdentifier>{edb95fca-5ec4-4ea0-ad43-3b9c4469b8a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Network">
+      <UniqueIdentifier>{2bca41a0-8bad-4c9f-9e34-58bccf5d90fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Actors">
+      <UniqueIdentifier>{985c1487-1cdb-4820-96f4-2926d74b40ae}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Include\Engine\old_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\byteconverter.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\Delegate.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\Scene.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\SceneManager.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\SDL_Object.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\TextureFactory.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\BombermanTime.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\UpdateMgr.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\Actor.cpp">
+      <Filter>Source Files\Engine\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\Eggbomb.cpp">
+      <Filter>Source Files\Engine\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\Eggsplosion.cpp">
+      <Filter>Source Files\Engine\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\Map.cpp">
+      <Filter>Source Files\Engine\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\Player.cpp">
+      <Filter>Source Files\Engine\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\RigidBody.cpp">
+      <Filter>Source Files\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\PhysicsMgr.cpp">
+      <Filter>Source Files\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\ColliderFactory.cpp">
+      <Filter>Source Files\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\Collider.cpp">
+      <Filter>Source Files\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\BoxCollider.cpp">
+      <Filter>Source Files\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\OnlinePlayer.cpp">
+      <Filter>Source Files\Engine\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\NetworkBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\Transform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\SerialData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\BombermanClientMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\MapManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\Engine\Collider.h">
+      <Filter>Header Files\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\ColliderFactory.h">
+      <Filter>Header Files\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\PhysicsMgr.h">
+      <Filter>Header Files\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\RigidBody.h">
+      <Filter>Header Files\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\BoxCollider.h">
+      <Filter>Header Files\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Map.h">
+      <Filter>Header Files\Engine\Actors\MapObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Player.h">
+      <Filter>Header Files\Engine\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Transform.h">
+      <Filter>Header Files\Engine\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Eggsplosion.h">
+      <Filter>Header Files\Engine\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Eggbomb.h">
+      <Filter>Header Files\Engine\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Actor.h">
+      <Filter>Header Files\Engine\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\OnlinePlayer.h">
+      <Filter>Header Files\Engine\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Delegates.h">
+      <Filter>Header Files\Engine\STOLEN</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\bomberman.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\byteconverter.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\IAttack.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\INetObject.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\IUpdatable.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Scene.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\SceneManager.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\SDL_Object.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\TextureFactory.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\BombermanTime.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\UpdateMgr.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Vector2.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\BombermanCore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\NetworkBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\BombermanClientMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\MapManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Include\Maps\map1.txt" />
+  </ItemGroup>
+</Project>
