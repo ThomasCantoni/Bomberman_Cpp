@@ -5,8 +5,6 @@
 #include <string>
 #include <vector>
 #include <queue>
-//#include <functional>
-
 #include "OnlinePlayer.h"
 #include "Delegates.h"
 
@@ -15,58 +13,65 @@ namespace Bomberman
 	class Player;
 	class Map;
 
+	/// <summary>
+	/// This class is responsible for every communication and interaction with the server.
+	/// The server is authorithative and can decide in its power, clients obey.
+	/// Messages are sent to the server only once a while to not overwork the network. This is done using a queue.
+	/// </summary>
+	
 	class BombermanClientMgr
 	{
-		typedef void(*NetworkOp)(const unsigned char*, int);
+		typedef int(*NetworkCommandGeneric)(const unsigned char*);
+		
+
 		//DECLARATION SYNTAX FOR FOR NON STATIC CLASSES WOULD BE:
 		//typedef void(<Class>::*NetworkOp)(const unsigned char*, int);
 
 	private:
-		static std::vector<NetworkOp> NetworkOps;
+		static std::unordered_map<int, NetworkCommandGeneric>	NETCOMMANDS;
+
+
 	public:
 		static Map* currentMap;
-		static MulticastDelegate<int> MapIndexReceived;
-		static MulticastDelegate<void> ClientReady;
-
-		static std::queue<unsigned char> PacketBuffer;
-		//static std::function<void(int)> test;
-		static const Player* LocalPlayer;
+		static MulticastDelegate<int,int,Vector2,Vector2> ServerConnectionEstablished;
+		
 		static float secondAccumulator;
 		static SOCKET Server_socket;
 		static sockaddr_in Server_addr;
 		static WSADATA wsa;
-		static int id,MapIndex;
-		static unsigned char message[1024];
-		static std::vector<OnlinePlayer*> OnlinePlayers;
-		static std::vector<Transform*> ObjectsToSync;
-		//THIS IS SIMILAR TO DECLARING A DELEGATE IN C#
+		
+		static int MapIndex;
+		static std::vector<unsigned char> message;
+
+		static std::unordered_map<int,Transform*> TransformsToSync; //this map is for the received transforms relative to item ID
+		static std::unordered_map<int, OnlinePlayer*> OnlinePlayers;//this is for the OnlinePlayer local entity relative to item ID
+
+		static std::queue<unsigned char> PacketBuffer;
+		
 
 
-		static unsigned char* Initialize(const char* server_ip, const int port,const  Player* LocalPlayer);
+		static unsigned char* Initialize(const char* server_ip, const int port);
 
-		/// <summary>
-		/// DEPRECATED Send a series of bytes to the IP Server_Socket
-		/// </summary>
-		/// <param name="data"></param>
-		/// <returns></returns>
-		static int OLD_SendToServer(unsigned char* data);
 		static int SendQueueToServer();
 
 
 		static unsigned long GetIncomingPacketNumber();
-		static int ReceiveFromServer(unsigned char* buffer, int buffer_length);
+		static int  ReceiveFromServer(std::vector<unsigned char>* buffer);
 		static void EnqueuePacket(unsigned char* data, int lengthToInsert);
-
+		static void EnqueuePacket(std::shared_ptr<unsigned char> data, int lengthToInsert);
 
 		static void Update();
-		static int ProcessMessage(const unsigned char* message, const int msg_length);
+		static int  ProcessMessage(const std::vector<unsigned char> message, const int msg_length);
 		static void SendEggRequest(const Vector2 pos);
 
-		static void UpdateOnlinePlayer(const unsigned char* message, int playerID);
-		static void InstantiateEgg(const unsigned char* message, int playerID);
-		static void InstantiatePlayer(const unsigned char* message, int playerID);
-		static void KillOnlinePlayer(const unsigned char* message, int playerID);
-		//void OnCollide(Collision* collisionInfo) override;
-		static void test();
+		static int UpdateOnlinePlayer	(const unsigned char* message);
+		static int InstantiateEgg		(const unsigned char* message);
+		static int InstantiatePlayer	(const unsigned char* message);
+		static int KillOnlinePlayer		(const unsigned char* message);
+		static int Travel				(const unsigned char* message);
+		static int UpdateLocalPlayer(const unsigned char* message);
+		
+
+
 	};
 }

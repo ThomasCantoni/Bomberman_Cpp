@@ -2,12 +2,13 @@
 
 namespace Bomberman
 {
+	
+	int MapManager:: CurrentMapIndex;
+	std::shared_ptr<Map> MapManager::CurrentMap;
+	std::string MapManager::map_names[5];
 	void MapManager::Initialize(std::string MapFilePath)
 	{
-		BombermanClientMgr::MapIndexReceived.AddLambda([](int index)
-			{
-				MapManager::LoadMap(index);
-			});
+		
 
 		map_names[0] = "..\\BombermanCore\\Include\\Maps\\map1.txt";
 	}
@@ -41,9 +42,11 @@ namespace Bomberman
 				stoi(splitted[4]) > 0 ? isStatic = true : isStatic = false;
 
 
-
-
-				CurrentMap->AddRect({ x,y,w,h }, isStatic);
+				auto til = std::make_shared<Tile>(x,y,w,h,isStatic );
+				
+				//CurrentMap->AddRect(til->transform.SDL_rect, isStatic);
+				CurrentMap->AddTile(til);
+				BombermanClientMgr::TransformsToSync[debug_int] = &til->transform;
 				debug_int++;
 
 			}

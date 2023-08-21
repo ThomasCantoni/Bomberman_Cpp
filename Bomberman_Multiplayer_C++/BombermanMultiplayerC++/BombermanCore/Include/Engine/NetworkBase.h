@@ -9,22 +9,26 @@
 #include <arpa/inet.h>
 #endif
 #include "byteconverter.h"
-
-//COMMUNICATION PROTOCOL
-// 
-// ENVELOPE PACKET DEFINITION:
-// FIRST 4 BYTES	: OBJECT ID
-// bytes 4 TO 8		: NET COMMAND
-// FROM 8 ONWARDS	: DATA PAYLOAD
-
-enum NetCommand
+#define NETWORK_PERIOD 0.1f
+#define MAX_PACKET_SIZE 1024 //0x400
+#define PACKET_DELIMITER 0x7c
+enum NETCOMMANDType // this type of command has object ID and payload
 {
-	Update = 0,
-	Announce = 1,
-	Death = 2,
-	EggSpawn=3,
-	UpdateMapStatus=4,
-	ChangeMap=5
+	Update = 0,		//update an actor in the scene according to ID
+	Announce = 1,	//instantiate new player and set specified local ID
+	Death = 2,		//destroy player with specified local ID
+	EggSpawn=3,		//instantiate egg bomb in the world at the position of the player with ID.
+	UpdateLocalPlayer = 4,	//physics are computed on the server, this command updates the local player position according to those physics.
+							//new positions are contained in payload.
+	PlayerInput = 5,		//player input is sent to the server and is then validated. Important for physics related movement.
+	ChangeMap=6,			// tell the local machine to change map
+	COUNT
+
+};
+enum PlayerInputType
+{
+	Movement,
+	EggRequest
 };
 
 

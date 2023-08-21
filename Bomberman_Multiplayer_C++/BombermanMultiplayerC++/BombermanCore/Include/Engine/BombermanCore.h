@@ -11,10 +11,11 @@ using namespace Bomberman;
 #include "Player.h"
 #include "PhysicsMgr.h"
 #include "Delegates.h"
-#include "Map.h"
+#include "LocalMap.h"
 #include <string>
 #include <list>
 #include "Player.h"
 #include "MapManager.h"
+
 
 

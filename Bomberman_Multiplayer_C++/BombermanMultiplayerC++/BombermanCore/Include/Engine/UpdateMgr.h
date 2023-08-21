@@ -2,7 +2,7 @@
 #include <list>
 #include <memory>
 #include "IUpdatable.h"
-#include <cstdbool>
+//#include <cstdbool>
 namespace Bomberman
 {
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "Actor.h"
 #include "IAttack.h"
+#include "NetworkBase.h"
 
 namespace Bomberman
 {

@@ -84,26 +84,11 @@
     <ClCompile Include="Include\Engine\Eggsplosion.cpp">
       <Filter>Source Files\Engine\Actors</Filter>
     </ClCompile>
-    <ClCompile Include="Include\Engine\Map.cpp">
+    <ClCompile Include="Include\Engine\LocalMap.cpp">
       <Filter>Source Files\Engine\Actors</Filter>
     </ClCompile>
     <ClCompile Include="Include\Engine\Player.cpp">
       <Filter>Source Files\Engine\Actors</Filter>
-    </ClCompile>
-    <ClCompile Include="Include\Engine\RigidBody.cpp">
-      <Filter>Source Files\Engine\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Include\Engine\PhysicsMgr.cpp">
-      <Filter>Source Files\Engine\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Include\Engine\ColliderFactory.cpp">
-      <Filter>Source Files\Engine\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Include\Engine\Collider.cpp">
-      <Filter>Source Files\Engine\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Include\Engine\BoxCollider.cpp">
-      <Filter>Source Files\Engine\Physics</Filter>
     </ClCompile>
     <ClCompile Include="Include\Engine\OnlinePlayer.cpp">
       <Filter>Source Files\Engine\Actors</Filter>
@@ -114,7 +99,7 @@
     <ClCompile Include="Include\Engine\Transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Include\Engine\SerialData.cpp">
+    <ClCompile Include="Include\Engine\INetObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Include\Engine\BombermanClientMgr.cpp">
@@ -125,22 +110,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\Engine\Collider.h">
-      <Filter>Header Files\Engine\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Engine\ColliderFactory.h">
-      <Filter>Header Files\Engine\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Engine\PhysicsMgr.h">
-      <Filter>Header Files\Engine\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Engine\RigidBody.h">
-      <Filter>Header Files\Engine\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Engine\BoxCollider.h">
-      <Filter>Header Files\Engine\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Engine\Map.h">
+    <ClInclude Include="Include\Engine\LocalMap.h">
       <Filter>Header Files\Engine\Actors\MapObject</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\Player.h">
@@ -212,8 +182,12 @@
     <ClInclude Include="Include\Engine\MapManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Engine\RigidbodyType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Include\Maps\map1.txt" />
+    <Text Include="Include\Net\ProtocolDefiner.txt" />
   </ItemGroup>
 </Project>

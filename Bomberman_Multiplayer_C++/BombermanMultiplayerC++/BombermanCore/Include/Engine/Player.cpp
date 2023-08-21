@@ -1,39 +1,32 @@
 #pragma once
 
 #include "Player.h"
-#include "ColliderFactory.h"
 #include <memory>
 #define TIMER_DROP_EGGBOMB  6.0f
 namespace Bomberman
 {
-	
+	Player* Player::LocalPlayer;
+
 	Player::Player(const SDL_Object* SDL_O) : Actor("paperella.png")
 	{
-		//NM = new NetworkManager("151.70.135.61", 8888);
-		
-		ID = BombermanClientMgr::id;
-		//position.x = 0;
-		//position.y = 0;
+
+
 		numberOfLives = 1;
-		
+
 		score = 0;
 		speed = 200;
-		
-		transform.SetDimensions(64,64 );
-		transform.SetPosition(64,64);
-		BombermanClientMgr::Initialize("127.0.0.1", 8888,this);
 
-		rigidbody->Collider =reinterpret_cast<Collider*>( ColliderFactory::CreateBoxFor(this));
-		rigidbody->AddCollisionType(RigidBodyType::Wall);
-		rigidbody->Type = RigidBodyType::Player;
-		
+		transform.SetDimensions(64, 64);
+		transform.SetPosition(64, 64);
+
+		LocalPlayer = this;
+
 	}
-
 	Player::~Player()
 	{
-		
+
 	}
-	void Player::Manage_Input()
+	const Uint8* Player::GetInput()
 	{
 		SDL_Event event;
 		while (SDL_PollEvent(&event))
@@ -47,7 +40,7 @@ namespace Bomberman
 
 				break;
 			case SDL_KEYUP:
-				if (event.key.keysym.sym == SDLK_SPACE )
+				if (event.key.keysym.sym == SDLK_SPACE)
 				{
 					//Vector2 pos = tGetPosition();
 					InstantiateEgg(transform.GetPosition());
@@ -57,24 +50,24 @@ namespace Bomberman
 		}
 		SDL_PumpEvents();
 		keys = SDL_GetKeyboardState(NULL);
-		
+		return keys;
 	}
-	void Player::Update() 
+	void Player::Update()
 	{
 		Actor::Update();
-		Manage_Input();
+		GetInput();
 		TimerDropEggbomb -= BombermanTime::DeltaTime;
-		Vector2 velocity;
+
+
+		velocity.x = (float)(keys[SDL_SCANCODE_RIGHT] - keys[SDL_SCANCODE_LEFT]);
+		velocity.y = (float)(keys[SDL_SCANCODE_DOWN] - keys[SDL_SCANCODE_UP]);
+		velocity = velocity.Normalize()*speed;
 		
-		velocity.x = (float)(keys[SDL_SCANCODE_RIGHT]  - keys[SDL_SCANCODE_LEFT] );
-		velocity.y = (float)(keys[SDL_SCANCODE_DOWN]   - keys[SDL_SCANCODE_UP] );
-		velocity = velocity.Normalize() * BombermanTime::DeltaTime * speed;
+		transform.AddVelocity(velocity*BombermanTime::DeltaTime);;
+
 		
-		float test = velocity.Magnitude();
-		
-		rigidbody->velocity = velocity;
 	}
-	
+
 	void Player::InstantiateEgg(const Vector2 pos)
 	{
 
@@ -90,19 +83,19 @@ namespace Bomberman
 
 	std::shared_ptr<SerialData> Player::GetPacketTransform() const
 	{
-		
+
 		auto serialTr = transform.Serialize();
 
-		auto  d = std::make_shared<SerialData>(sizeof(int)*2);
-		byteconverter::BytesAppend(d->data,d->length, 0, ID);
-		byteconverter::BytesAppend(d->data,d->length, 4, (int)NetCommand::Update);
+		auto  d = std::make_shared<SerialData>(sizeof(int) * 2);
+		byteconverter::BytesAppend(d->data, d->length, 0, ID);
+		byteconverter::BytesAppend(d->data, d->length, 4, (int)NETCOMMANDType::Update);
 
 		d->Append(*serialTr.get());
 		d->Print();
-		
+
 		return d;
 	}
-    #pragma region OLD
+#pragma region OLD
 	/*
 	* void Player::ManageNetworkOperations()
 	{
@@ -153,20 +146,20 @@ namespace Bomberman
 			NetworkManager::ProcessMessage(message, n);
 		}
 	}
-	void Player::InstantiateEgg    (const unsigned char* message, int playerID) 
-	{															
+	void Player::InstantiateEgg    (const unsigned char* message, int playerID)
+	{
 		float X, Y;
 		X = byteconverter::BytesToFloat(message, 8, true);
 		Y = byteconverter::BytesToFloat(message, 12, true);
 		auto new_egg = std::make_unique<Eggbomb*>(new Eggbomb(X, Y));
-	}															
-	void Player::InstantiatePlayer (const unsigned char* message, int playerID) 
-	{															
+	}
+	void Player::InstantiatePlayer (const unsigned char* message, int playerID)
+	{
 		OnlinePlayer* newPlayer = new OnlinePlayer(playerID);
 
 		OnlinePlayers[newPlayer->ID - 1] = newPlayer;
-	}															
-	void Player::UpdateOnlinePlayer(const unsigned char* message, int playerID) 
+	}
+	void Player::UpdateOnlinePlayer(const unsigned char* message, int playerID)
 	{
 		if (playerID == ID)
 			return;
@@ -175,7 +168,7 @@ namespace Bomberman
 		printX = byteconverter::BytesToFloat(message, 8, true);
 		printY = byteconverter::BytesToFloat(message, 12, true);
 
-		
+
 		playerSelected->old_position.x = playerSelected->latest_position.x;
 		playerSelected->old_position.y = playerSelected->latest_position.y;
 		playerSelected->latest_position.x = printX;
@@ -187,32 +180,32 @@ namespace Bomberman
 		//std::cout << "POSITIONS : " << printX << " " << printY << std::endl;
 		//std::cout << "#################################################" << std::endl;
 	}
-	void Player::KillOnlinePlayer  (const unsigned char* message, int playerID) 
+	void Player::KillOnlinePlayer  (const unsigned char* message, int playerID)
 	{
 		OnlinePlayer* playerSelected = OnlinePlayers[playerID - 1];
 		OnlinePlayers[playerID - 1] = NULL;
 		UpdateMgr::RemoveItem(playerSelected);
 	}
 	void Player::ProcessMessage(const unsigned char* message, const int msg_length)
-	
+
 	for (int i = 0; i < msg_length; ++i)
 	{
 		printf("%x", message[i]);
 	}
-	
+
 	int player_id = byteconverter::BytesToInt_V2(message, 0);
-	
-	
+
+
 	printf("\n RECEIVED PLAYERID %i \n", player_id);
-	
+
 	int commandCode = byteconverter::BytesToInt_V2(message, 4);
 	printf("\n RECEIVED COMMAND %i \n", commandCode);
 	NetworkOp methodToCall = NetworkOps[commandCode];
 	(this->*methodToCall)(message,player_id);
-	
-	
+
+
 	return;
-		
+
 		if (commandCode == 0)
 		{ // command 0 updates player
 			OnlinePlayer* player_selected = OnlinePlayers[player_id - 1];
@@ -264,7 +257,7 @@ namespace Bomberman
 			float X, Y;
 			X = byteconverter::BytesToFloat(message, 8, true);
 			Y = byteconverter::BytesToFloat(message, 12, true);
-		
+
 			auto new_egg = std::make_unique<Eggbomb*>(new Eggbomb(X, Y));
 			//delete(new_egg);
 			//std::cout << new_egg.get()->c_str() << std::endl;
@@ -272,9 +265,9 @@ namespace Bomberman
 
 		}
 
-		
-		
-	
+
+
+
 	}
 	void Player::OnCollide(Collision* collisionInfo)
 	{
@@ -326,9 +319,21 @@ namespace Bomberman
 	}
 	*/
 #pragma endregion
-	
-	
 
-	
+	std::shared_ptr<SerialData> Player::GetPacketMovement() const
+	{
+		auto velocityData = std::make_shared<SerialData>(16);
+		Vector2 vel = velocity;
+		if (vel.x != 0 || vel.y != 0)
+		{
+			std::cout << "";
+		}
+		byteconverter::BytesAppend(velocityData->data, 16, 0, NETCOMMANDType::PlayerInput);
+		byteconverter::BytesAppend(velocityData->data, 16, 4, PlayerInputType::Movement);
+		byteconverter::BytesAppend(velocityData->data, 16, 8, vel.x);
+		byteconverter::BytesAppend(velocityData->data, 16, 12, vel.y);
+		return velocityData;
+	}
 }
+
 

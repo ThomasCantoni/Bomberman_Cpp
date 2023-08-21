@@ -46,7 +46,7 @@ namespace Bomberman
 			SDL_rect.y	+= (int)toAdd.y;
 			//return previousPos;
 		}
-		const Vector2 GetPosition() const
+		Vector2 GetPosition() const
 		{
 			Vector2 center;
 			center.x = SDL_rect.x + SDL_rect.w * pivot.x;
@@ -101,7 +101,8 @@ namespace Bomberman
 
 		}
 		std::shared_ptr<SerialData> Serialize() const override;
-		
+		std::shared_ptr<ISerializable> Deserialize(std::shared_ptr<SerialData>) const override;
+
 	};
 
 }

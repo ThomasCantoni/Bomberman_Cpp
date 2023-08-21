@@ -1,0 +1,78 @@
+#include "RigidBody.h"
+#include "PhysicsMgr.h"
+#include "Collider.h"
+#include "BombermanClientMgr.h"
+namespace Bomberman
+{
+	RigidBody::RigidBody()
+	{
+		velocity = Vector2::Zero();
+		velocityMultiplier = Vector2::One();
+		friction = Vector2::Zero();
+	}
+	RigidBody::RigidBody(Actor* owner) : Owner(owner)
+	{
+		
+		PhysicsMgr::AddItem(this);
+		velocity = Vector2::Zero();
+		velocityMultiplier = Vector2::One();
+		friction = Vector2::Zero();
+	}
+	bool RigidBody::IsActive()
+	{
+		return Owner->IsActive;
+	}
+	bool RigidBody::IsAwake()
+	{
+		return velocity > Vector2::Zero();
+	}
+	void RigidBody::SetStatic(bool desiredValue)
+	{
+		IsStatic = desiredValue;
+		if (IsStatic )
+		{
+			BombermanClientMgr::ObjectsToSync.push_back(&Owner->transform);
+		}
+		else
+		{
+			//NetworkManager::ObjectsToSync.
+		}
+	}
+	Vector2 RigidBody::GetPosition()
+	{
+		return Owner->transform.GetPosition();
+	}
+	void RigidBody::Update()
+	{
+		
+		//std::cout << "AAAAAAAAAAAAA" << velocity.x << " " << velocity.y << " " << std::endl;
+		if (IsStatic == true)
+		{
+			velocity = Vector2::Zero();
+			return;
+		}
+		Owner->transform.AddVelocity(velocity * velocityMultiplier );
+		velocity.x /= 1 +friction.x * BombermanTime::DeltaTime;
+		velocity.y /= 1 +friction.y * BombermanTime::DeltaTime;
+	}
+	void RigidBody::AddCollisionType(RigidBodyType type)
+	{
+		collisionMask |= (unsigned int)type;
+	}
+	void RigidBody::AddCollisionType(unsigned int type)
+	{
+		collisionMask |= (unsigned int)type;
+	}
+	bool RigidBody::CollisionTypeMatches(RigidBodyType type)
+	{
+		return ((unsigned int)type & collisionMask) != 0;
+	}
+	bool RigidBody::Collides(RigidBody* other, Collision* collisionInfo)
+	{
+		return Collider->Collides(other->Collider, collisionInfo);
+	}
+	RigidBody::~RigidBody()
+	{
+		PhysicsMgr::RemoveItem(this);
+	}
+}

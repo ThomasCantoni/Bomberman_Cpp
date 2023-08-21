@@ -12,8 +12,7 @@
 //#include "IGraphicObject.h"
 #include "Transform.h"
 
-#define NETWORK_PERIOD 0.2f
-#define MSG_SIZE 50
+
 namespace Bomberman
 {
 
@@ -23,12 +22,10 @@ namespace Bomberman
 	{
 
 	public:
-		Transform transform;
+		Transform transform; // for render purposes, position is mostly decided by the server
 		SDL_Texture* texture;
-		RigidBody* rigidbody;
-		
-		//SDL_Rect SDL_rect;
-		//Vector2 position;
+		int ID;
+
 		bool IsActive = true;
 		
 
@@ -37,12 +34,10 @@ namespace Bomberman
 		Actor(const Actor& other);
 		Actor& operator=(const Actor& other) = default;
 		Actor(const char* texture_path);
-		//virtual INetObjectInfo Serialize() const override;
-	   
-		virtual void OnCollide			  (Collision& collisionInfo);
-		virtual void OnCollideWithStatic  (Collision& collisionInfo);
-		virtual void OnCollideWithDynamic (Collision& collisionInfo);
-		
+		//virtual void OnCollide			(Collision& collisionInfo);
+		//virtual void OnCollideWithStatic  (Collision& collisionInfo);
+		//virtual void OnCollideWithDynamic (Collision& collisionInfo);
+		virtual std::shared_ptr<SerialData> GetPacketTransform() const;
 		void Update() override;
 		
 	};

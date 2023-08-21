@@ -145,15 +145,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ActorData.cpp" />
+    <ClCompile Include="ServerMap.cpp" />
+    <ClCompile Include="Src\ActorData.cpp" />
+    <ClCompile Include="Src\BoxCollider.cpp" />
+    <ClCompile Include="Src\NETColliderFactory.cpp" />
+    <ClCompile Include="Src\NETCollider.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="PlayerData.cpp" />
-    <ClCompile Include="Server.cpp" />
+    <ClCompile Include="Src\NETPhysicsMgr.cpp" />
+    <ClCompile Include="Src\PlayerData.cpp" />
+    <ClCompile Include="Src\NETRigidBody.cpp" />
+    <ClCompile Include="Src\Server.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ActorData.h" />
-    <ClInclude Include="PlayerData.h" />
-    <ClInclude Include="Server.h" />
+    <ClInclude Include="ServerMap.h" />
+    <ClInclude Include="Src\ActorData.h" />
+    <ClInclude Include="Src\BoxCollider.h" />
+    <ClInclude Include="Src\NETCollisionType.h" />
+    <ClInclude Include="Src\NETColliderFactory.h" />
+    <ClInclude Include="Src\NETCollider.h" />
+    <ClInclude Include="Src\NETCollision.h" />
+    <ClInclude Include="Src\NETPhysicsMgr.h" />
+    <ClInclude Include="Src\PlayerData.h" />
+    <ClInclude Include="Src\NETRigidBody.h" />
+    <ClInclude Include="Src\Server.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\BombermanCore\Include\Maps\map1.txt" />

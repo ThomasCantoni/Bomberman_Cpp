@@ -2,47 +2,17 @@
 
 
 #include "BombermanCore.h"
+#include "Vector2.h"
+#include "Delegates.h"
+#include <thread>
 
-
-
-
-
-//Player OnlinePlayers [2];
 Player* player;
-
 SDL_Object* SDL_Obj;
-BombermanClientMgr* NM;
-//SDL_Rect* map_obstacle;
 
 Uint64 currentTime, previousTime;
-//const float* Delta_Time_ref;
 float deltaTime, FPS;
 
-//int main2()
-//{
-//	printf("Hello");
-//	Vector2 test;
-//	test.x = 100;
-//	test.y = 100;
-//	Vector2 test2;
-//	test2.x = 0;
-//	test2.y = 0;
-//	Vector2 result = Vector2::Lerp(test, test2, 0.5f);
-//
-//	std::string string_test = { 'C','I','A','A',65,'o' };
-//	std::string string_to_append = { 'Z','Z','Z','Z','Z','Z', };
-//	printf("\n STRING %s  ", string_test.c_str());
-//	printf("\n STRING %s  ", string_to_append.c_str());
-//
-//	//byteconverter::BytesAppend(string_test, string_test.length(), 2, string_to_append, 5);
-//	string_test.append(string_to_append);
-//	printf("\n RESULT %f  :  %f ",result.x,result.y);
-//	printf("\n STRING %s  ", string_test.c_str());
-//	
-//
-//	return 0;
-//}
-//std::list<IUpdatable*> UPDATABLES;
+
 float DeltaTimeUpdate()
 {
 
@@ -61,12 +31,19 @@ float DeltaTimeUpdate()
     return fps;
 }
 
+MulticastDelegate<int, int, int> testing;
 
+void test()
+{
 
+}
 int main(int argc, char** argv)
 {
-    
-    
+
+    testing.AddLambda([](int a, int b, int c)
+        {
+            std::cout << a << " " << b << " " << c << "\n";
+        });
     SDL_Obj = new SDL_Object();
     TextureFactory::LoadTexture("materials\\eggsplosion.png");
     TextureFactory::LoadTexture("materials\\EGGOLD.png");
@@ -74,32 +51,44 @@ int main(int argc, char** argv)
 
     MapManager::Initialize("..\\BombermanCore\\Include\\Maps");
 
-   std::cout << "SDL Object created" << std::endl;
-   BombermanTime::BombermanTime(deltaTime);
-   
+    std::cout << "SDL Object created" << std::endl;
+    BombermanTime::BombermanTime(deltaTime);
 
 
-   player = new Player(SDL_Obj);
-   
-  
-   int  running = 1;
-  
-   
+    player = new Player(SDL_Obj);
+
+    BombermanClientMgr::ServerConnectionEstablished.AddLambda([](int localPlayerID, int mapID, Vector2 pos, Vector2 dim)
+        {
+            player->ID = localPlayerID;
+            player->transform.SetPosition(pos);
+            player->transform.SetDimensions(dim);
+            MapManager::LoadMap(mapID);
+
+        });
+    BombermanClientMgr::Initialize("127.0.0.1", 8888);
+
+
+
+    int  running = 1;
+
+
     while (running)
     {
 
-         DeltaTimeUpdate();
+       // std::thread drawerThread(&SDL_Object::EndFrameUpdate,SDL_Obj);
+        
+       BombermanTime::DeltaTimeUpdate();
          
          SDL_Obj->StartFrameUpdate();
        
         UpdateMgr::Update();
-        PhysicsMgr::Update();
-        //PhysicsMgr::CheckCollisions();
+       
         BombermanClientMgr::Update();
         SDL_Obj->EndFrameUpdate();
-
+        
+       // drawerThread.join();
     }
-    // server_reply[recv_size] = '\0';
+    
     //closesocket(Server_socket);
      WSACleanup();
     return 0;

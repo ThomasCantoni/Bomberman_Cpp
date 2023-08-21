@@ -21,23 +21,18 @@
   <ItemGroup>
     <ClCompile Include="Include\Engine\Actor.cpp" />
     <ClCompile Include="Include\Engine\BombermanClientMgr.cpp" />
-    <ClCompile Include="Include\Engine\BoxCollider.cpp" />
     <ClCompile Include="Include\Engine\byteconverter.cpp" />
-    <ClCompile Include="Include\Engine\Collider.cpp" />
-    <ClCompile Include="Include\Engine\ColliderFactory.cpp" />
     <ClCompile Include="Include\Engine\Delegate.cpp" />
     <ClCompile Include="Include\Engine\Eggbomb.cpp" />
     <ClCompile Include="Include\Engine\Eggsplosion.cpp" />
     <ClCompile Include="Include\Engine\old_main.cpp" />
-    <ClCompile Include="Include\Engine\Map.cpp" />
+    <ClCompile Include="Include\Engine\LocalMap.cpp" />
     <ClCompile Include="Include\Engine\OnlinePlayer.cpp" />
-    <ClCompile Include="Include\Engine\PhysicsMgr.cpp" />
     <ClCompile Include="Include\Engine\Player.cpp" />
-    <ClCompile Include="Include\Engine\RigidBody.cpp" />
     <ClCompile Include="Include\Engine\Scene.cpp" />
     <ClCompile Include="Include\Engine\SceneManager.cpp" />
     <ClCompile Include="Include\Engine\SDL_Object.cpp" />
-    <ClCompile Include="Include\Engine\SerialData.cpp" />
+    <ClCompile Include="Include\Engine\INetObject.cpp" />
     <ClCompile Include="Include\Engine\TextureFactory.cpp" />
     <ClCompile Include="Include\Engine\BombermanTime.cpp" />
     <ClCompile Include="Include\Engine\Transform.cpp" />
@@ -50,21 +45,16 @@
     <ClInclude Include="Include\Engine\BombermanCore.h" />
     <ClInclude Include="Include\Engine\Actor.h" />
     <ClInclude Include="Include\Engine\bomberman.h" />
-    <ClInclude Include="Include\Engine\BoxCollider.h" />
     <ClInclude Include="Include\Engine\byteconverter.h" />
-    <ClInclude Include="Include\Engine\Collider.h" />
-    <ClInclude Include="Include\Engine\ColliderFactory.h" />
     <ClInclude Include="Include\Engine\Delegates.h" />
     <ClInclude Include="Include\Engine\Eggbomb.h" />
     <ClInclude Include="Include\Engine\Eggsplosion.h" />
     <ClInclude Include="Include\Engine\IAttack.h" />
     <ClInclude Include="Include\Engine\INetObject.h" />
     <ClInclude Include="Include\Engine\IUpdatable.h" />
-    <ClInclude Include="Include\Engine\Map.h" />
+    <ClInclude Include="Include\Engine\LocalMap.h" />
     <ClInclude Include="Include\Engine\OnlinePlayer.h" />
-    <ClInclude Include="Include\Engine\PhysicsMgr.h" />
     <ClInclude Include="Include\Engine\Player.h" />
-    <ClInclude Include="Include\Engine\RigidBody.h" />
     <ClInclude Include="Include\Engine\Scene.h" />
     <ClInclude Include="Include\Engine\SceneManager.h" />
     <ClInclude Include="Include\Engine\SDL_Object.h" />
@@ -75,9 +65,11 @@
     <ClInclude Include="Include\Engine\Vector2.h" />
     <ClInclude Include="Include\Engine\NetworkBase.h" />
     <ClInclude Include="Include\Engine\MapManager.h" />
+    <ClInclude Include="Include\Engine\RigidbodyType.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Include\Maps\map1.txt" />
+    <Text Include="Include\Net\ProtocolDefiner.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
