@@ -23,7 +23,7 @@ namespace Bomberman
 		lerp_accumulator += BombermanTime::DeltaTime *  (1.f / NETWORK_PERIOD);
 		current_position = Vector2::Vector2_Lerp(old_position, latest_position,lerp_accumulator);
 		//std::cout <<" POSITIONS : " << old_position.x << " " << old_position.y << std::endl;
-		transform.SetPosition((int)current_position.x, (int)current_position.y);
+		transform.SetPosition({ current_position.x, current_position.y });
 		transform.SetDimensions( 64, 64 );
 		//SDL_RenderCopy(SDL_Obj->renderer, texture, NULL, &this->SDL_rect);
 	}

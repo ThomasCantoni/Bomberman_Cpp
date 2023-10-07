@@ -7,8 +7,10 @@ namespace Bomberman
 	
 	Tile::Tile(const float x, const float y, const float w, const float h,const bool isStatic ) : Actor()
 	{
-		SDL_Rect rect{ x,y,w,h };
-		transform.SDL_rect = rect;
+		
+		transform.SetDimensions(Vector2(w, h));
+		transform.SetPosition(Vector2(x, y));
+
 		Tile::isStatic = isStatic;
 		//rigidbody = new RigidBody(this);
 		//rigidbody->SetStatic(isStatic);
@@ -23,7 +25,7 @@ namespace Bomberman
 	Tile::Tile(SDL_Rect rect,const bool isStatic) : Actor()
 	{
 
-		transform.SDL_rect = rect;
+		transform.screenTransform = rect;
 		Tile::isStatic = isStatic;
 		//rigidbody = new RigidBody(this);
 		//rigidbody->SetStatic(isStatic);
@@ -36,7 +38,7 @@ namespace Bomberman
 	}
 	void Tile::Update()
 	{
-		SDL_RenderFillRect(SDL_Object::renderer, &transform.SDL_rect);
+		SDL_RenderFillRect(SDL_Object::renderer, &transform.screenTransform);
 	}
 
 
@@ -57,7 +59,7 @@ namespace Bomberman
 			SDL_SetRenderDrawColor(SDL_Object::renderer, 0x7f,0x82,0x78, 255);
 			(*i)->Update();
 			
-			SDL_Rect current_rect = (*i)->transform.SDL_rect;
+			SDL_Rect current_rect = (*i)->transform.screenTransform;
 			SDL_RenderFillRect(SDL_Object::renderer, &current_rect);
 			continue;
 			

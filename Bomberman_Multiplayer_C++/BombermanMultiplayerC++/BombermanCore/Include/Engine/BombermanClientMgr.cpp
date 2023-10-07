@@ -2,6 +2,7 @@
 #include "BombermanClientMgr.h"
 #include "Player.h"
 #include "Vector2.h"
+#include "NetworkPacket.h"
 //#include "Map.h"
 
 namespace Bomberman
@@ -98,12 +99,12 @@ namespace Bomberman
 
 
 		
-		int id	= byteconverter::BytesToInt((unsigned char*)serverResponse, 0,  false);
-		int MapIndex	= byteconverter::BytesToInt((unsigned char*)serverResponse,  4,  false);
-		float posX		= byteconverter::BytesToFloat((unsigned char*)serverResponse, 8,  false);
-		float posY		= byteconverter::BytesToFloat((unsigned char*)serverResponse, 12, false);
-		float dimX		= byteconverter::BytesToFloat((unsigned char*)serverResponse, 16, false);
-		float dimY		= byteconverter::BytesToFloat((unsigned char*)serverResponse, 20, false);
+		int id	= ByteConverter::BytesToInt((unsigned char*)serverResponse, 0,  false);
+		int MapIndex	= ByteConverter::BytesToInt((unsigned char*)serverResponse,  4,  false);
+		float posX		= ByteConverter::BytesToFloat((unsigned char*)serverResponse, 8,  false);
+		float posY		= ByteConverter::BytesToFloat((unsigned char*)serverResponse, 12, false);
+		float dimX		= ByteConverter::BytesToFloat((unsigned char*)serverResponse, 16, false);
+		float dimY		= ByteConverter::BytesToFloat((unsigned char*)serverResponse, 20, false);
 		
 		Vector2 position(posX, posY);
 		Vector2 dimen(dimX, dimY);
@@ -119,6 +120,8 @@ namespace Bomberman
 		
 		message.reserve(MAX_PACKET_SIZE);
 		message.resize(message.capacity());
+		
+		
 	}
 
 	
@@ -174,20 +177,26 @@ namespace Bomberman
 		
 		return msg_length;
 	}
-	int  BombermanClientMgr::ReceiveFromServer(std::vector<unsigned char>* buffer)
+	std::shared_ptr<std::vector<NetworkPacket>>  BombermanClientMgr::ReceiveFromServer(std::vector<unsigned char>* buffer,int* length)
 	{
 		int server_size = sizeof(Server_addr);
 		//unsigned char* data = &(buffer.data())[0];
-		return recvfrom(Server_socket, (char*)message.data(), MAX_PACKET_SIZE, 0, (struct sockaddr*)&(Server_addr), &server_size);
+		int receivedBytes = recvfrom(Server_socket, (char*)message.data(), MAX_PACKET_SIZE, 0, (struct sockaddr*)&(Server_addr), &server_size);
+		if (receivedBytes > 0)
+		{
+			*length = receivedBytes;
+			std::shared_ptr<std::vector<NetworkPacket>> toReturn = NetworkPacket::Unpack(buffer, false);
+			return toReturn;
 
-		//return recvfrom(Server_socket, (char*)buffer->data(), MAX_PACKET_SIZE, 0, (struct sockaddr*)&(Server_addr), &server_size);
+		}
+		return nullptr;
 	}
-	int  BombermanClientMgr::ProcessMessage(const std::vector<unsigned char> message, const int msgLength)
+	int  BombermanClientMgr::ProcessMessage(const std::shared_ptr<std::vector<NetworkPacket>> message, const int msgLength)
 	{
 		//std::shared_ptr<unsigned char> message2 = std::make_shared<unsigned char>(message);
 		int BytesRemaining = msgLength;
 		int currentIndex = 0;
-		std::vector<std::shared_ptr<unsigned char[]>> messageSplitted = byteconverter::split(message, PACKET_DELIMITER);
+		
 		/*for (int i = 0; i < messageSplitted.size(); ++i)
 		{
 			unsigned char* Mess = messageSplitted.at(i).get();
@@ -201,19 +210,20 @@ namespace Bomberman
 			std::cout << "\n\n";
 
 		}*/
-		for (int i=0;i< messageSplitted.size();++i)
+		for (auto i = message->begin(); i != message->end(); i++)
 		{
-			auto Mess = messageSplitted.at(i).get();
-			NETCOMMANDType commandCode = static_cast<NETCOMMANDType>(byteconverter::BytesToInt(Mess, 0,false));
+			NetworkPacket n = (*i);
+			NETCOMMANDType commandCode = static_cast<NETCOMMANDType>(n.CommandType);
 			//std::cout << "RECEIVED COMMAND " << commandCode << "\n";
-			int player_id = byteconverter::BytesToInt(Mess, 4,false);
+			int player_id = n.PlayerID;
+			int packetLength = n.Payload->data->size();
 			//std::cout << "RECEIVED PLAYERID "<< player_id <<"\n";
 
 			NetworkCommandGeneric methodToCall = NETCOMMANDS[commandCode];
 			if (methodToCall != nullptr)
 			{
 				
-				int bytesUsed = (*methodToCall)(Mess);
+				int bytesUsed = (*methodToCall)(n);
 				BytesRemaining -= bytesUsed;
 				currentIndex += bytesUsed;
 			}
@@ -221,9 +231,10 @@ namespace Bomberman
 			{
 				std::cout << "COMMAND RECEIVED INVALID!!!!! \n";
 			}
-		
+			
 		}
-		
+		message->erase(message->begin(),message->end());
+		//delete(messageSplitted);
 		return 0;
 	}
 	void BombermanClientMgr::Update()
@@ -239,7 +250,8 @@ namespace Bomberman
 			{
 				std::cout << "";
 			}
-			EnqueuePacket(velocityData->data, 16);
+			
+			EnqueuePacket(velocityData->Payload->data->data(), velocityData->Payload->data->size());
 			SendQueueToServer();
 
 		}
@@ -248,14 +260,16 @@ namespace Bomberman
 		{
 
 
-			unsigned long msgLength = GetIncomingPacketNumber();
-			if (msgLength == 0)
-				return;
+			//unsigned long msgLength = GetIncomingPacketNumber();
+			//if (msgLength == 0)
+			//	return;
 			message.assign(message.size(), 0); //clear the occupied slots
-			message.resize(msgLength); //this is not as heavy as doing a realloc because the 1024 slots have already been reserved,
+			//message.resize(msgLength); //this is not as heavy as doing a realloc because the 1024 slots have already been reserved,
 			//the resize doesn't have to allocate
-			int n = ReceiveFromServer(&message);
-			std::vector<std::shared_ptr<unsigned char[]>> messageSplitted = byteconverter::split(message, PACKET_DELIMITER);
+			int length = 0;
+			std::shared_ptr<std::vector<NetworkPacket>> pointer = ReceiveFromServer(&message,&length);
+			
+			
 
 
 			//unsigned char* message2 = (unsigned char*)malloc(msgLength);
@@ -263,23 +277,23 @@ namespace Bomberman
 			// n =recvfrom(Server_socket, (char*)message2,msgLength, 0, (struct sockaddr*)&(Server_addr), &server_size);
 			// std::vector<std::shared_ptr<unsigned char[]>> messageSplitted2 = byteconverter::split(message2, msgLength, PACKET_DELIMITER);
 		   
-			if (n <= 0)
+			if (pointer.get() == nullptr || pointer->size() <= 0)
 				return;
 			//printf("Received %d bytesfrom %s : %d : %.*s \n", n, inet_ntop(NM->Server_addr.sin_addr), ntohs(NM->Server_addr.sin_port), n, message);
-			BombermanClientMgr::ProcessMessage(message, n);
+			BombermanClientMgr::ProcessMessage(pointer, length);
 
 		}
-		message.clear();
+		//message.clear();
 	}
-	int BombermanClientMgr::InstantiateEgg(const unsigned char* message)
+	int BombermanClientMgr::InstantiateEgg		(const NetworkPacket message)
 	{
 		float X, Y;
-		X = byteconverter::BytesToFloat(message, 8, true);
-		Y = byteconverter::BytesToFloat(message, 12, true);
+		X = ByteConverter::BytesToFloat(message.Payload->data->data(), 12, true);
+		Y = ByteConverter::BytesToFloat(message.Payload->data->data(), 16, true);
 		auto new_egg = std::make_unique<Eggbomb*>(new Eggbomb(X, Y));
 		return 0;
 	}
-	int BombermanClientMgr::InstantiatePlayer(const unsigned char* message)
+	int BombermanClientMgr::InstantiatePlayer	(const NetworkPacket message)
 	{
 
 		//OnlinePlayer* newPlayer = new OnlinePlayer(PlayerID);
@@ -287,31 +301,33 @@ namespace Bomberman
 		//OnlinePlayers[newPlayer->ID - 1] = newPlayer;
 		return 0;
 	}
-	int BombermanClientMgr::UpdateOnlinePlayer(const unsigned char* message)
+	int BombermanClientMgr::UpdateOnlinePlayer	(const NetworkPacket message)
 	{
-		int id = byteconverter::BytesToInt(message, 4,false);
+		
 		float printX, printY;
-		if (strlen((char*)message) + 12+3 >= MAX_PACKET_SIZE)
+		
+		printX = ByteConverter::BytesToFloat(message.Payload->data->data(), 12,message.BigEndian);
+		printY = ByteConverter::BytesToFloat(message.Payload->data->data(), 16, message.BigEndian);
+		
+		if (message.PlayerID == Player::GetLocalPlayer()->ID)
 		{
-			std::cout <<"";
-		}
-		printX = byteconverter::BytesToFloat(message, 8,false);
-		printY = byteconverter::BytesToFloat(message, 12, false);
-		int playerID = Player::GetLocalPlayer()->ID;
-		if (playerID == id)
-		{
-			if (printX > 0)
+			if (printX != 64 || printY != 64)
 			{
-				std::cout << "";
+				//std::cout << "ao";
 			}
-			Player::GetLocalPlayer()->transform.SetPosition(printX, printY);
+			Player::GetLocalPlayer()->transform.SetPosition({ printX, printY });
 			return 4;
 		}
-		Transform* toUpdate = TransformsToSync[id];
-		if(toUpdate != nullptr)
-			toUpdate->SetPosition(printX, printY);
+
+		Transform* toUpdate = TransformsToSync[message.PlayerID];
+		if (toUpdate != nullptr)
+		{
+			Vector2 toSet = { printX, printY };
+			toUpdate->SetPosition({ printX, printY });
+		}
 		return 4;
-		OnlinePlayer* playerSelected = OnlinePlayers[id - 1];
+
+		OnlinePlayer* playerSelected = OnlinePlayers[message.PlayerID - 1];
 		
 		
 		playerSelected->old_position.x = playerSelected->latest_position.x;
@@ -325,7 +341,7 @@ namespace Bomberman
 		std::cout << "POSITIONS : " << printX << " " << printY << std::endl;
 		std::cout << "#################################################" << std::endl;
 	}
-	int BombermanClientMgr::KillOnlinePlayer(const unsigned char* message	)
+	int BombermanClientMgr::KillOnlinePlayer	(const NetworkPacket message	)
 	{
 
 		//OnlinePlayer* playerSelected = OnlinePlayers[playerID - 1];
@@ -333,13 +349,37 @@ namespace Bomberman
 		//UpdateMgr::RemoveItem(playerSelected);
 		return 0;
 	}
-	int BombermanClientMgr::Travel(const unsigned char* data)
+	int BombermanClientMgr::Travel				(const NetworkPacket data)
 	{
 		return 0;
 	}
+	void BombermanClientMgr::EnqueuePacket		(std::vector<unsigned char>* data, int bytesToInsert)
+	{
+
+		for (int i = 0; i < bytesToInsert; i++)
+		{
+			PacketBuffer.push(data->data()[i]);
+
+		}
+		//SEPARATOR IS '|'
+		//PacketBuffer.push('|');
 
 
-	void BombermanClientMgr::SendEggRequest(const Vector2 pos)
+	}
+	void BombermanClientMgr::EnqueuePacket		(unsigned char* data, int bytesToInsert)
+	{
+
+		for (int i = 0; i < bytesToInsert; i++)
+		{
+			PacketBuffer.push(data[i]);
+
+		}
+		//SEPARATOR IS '|'
+		//PacketBuffer.push('|');
+
+
+	}
+	void BombermanClientMgr::SendEggRequest		(const Vector2 pos)
 	{
 		//unsigned char* bufferX = byteconverter::FloatToBytes(pos.x);
 		//unsigned char* bufferY = byteconverter::FloatToBytes(pos.y);
@@ -353,31 +393,5 @@ namespace Bomberman
 		//byteconverter::BytesAppend(msg,16,12, bufferY, sizeof(float));
 		//EnqueuePacket(msg, 16);
 		
-	}
-	void BombermanClientMgr::EnqueuePacket(unsigned char* data, int bytesToInsert)
-	{
-
-		for (int i = 0; i < bytesToInsert; i++)
-		{
-			PacketBuffer.push(data[i]);
-
-		}
-		//SEPARATOR IS '|'
-		PacketBuffer.push('|');
-
-
-	}
-	void BombermanClientMgr::EnqueuePacket(std::shared_ptr<unsigned char> data, int bytesToInsert)
-	{
-
-		for (int i = 0; i < bytesToInsert; i++)
-		{
-			PacketBuffer.push(data.get()[i]);
-
-		}
-		//SEPARATOR IS '|'
-		PacketBuffer.push('|');
-
-
 	}
 };

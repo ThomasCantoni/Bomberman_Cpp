@@ -51,7 +51,7 @@
     <ClCompile Include="Include\Engine\old_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Include\Engine\byteconverter.cpp">
+    <ClCompile Include="Include\Engine\ByteConverter.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Include\Engine\Delegate.cpp">
@@ -108,6 +108,9 @@
     <ClCompile Include="Include\Engine\MapManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Include\Engine\NetworkPacket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Engine\LocalMap.h">
@@ -137,7 +140,7 @@
     <ClInclude Include="Include\Engine\bomberman.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Engine\byteconverter.h">
+    <ClInclude Include="Include\Engine\ByteConverter.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\IAttack.h">
@@ -185,9 +188,13 @@
     <ClInclude Include="Include\Engine\RigidbodyType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Engine\NetworkPacket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Include\Maps\map1.txt" />
     <Text Include="Include\Net\ProtocolDefiner.txt" />
+    <Text Include="Include\Maps\map0.txt" />
   </ItemGroup>
 </Project>

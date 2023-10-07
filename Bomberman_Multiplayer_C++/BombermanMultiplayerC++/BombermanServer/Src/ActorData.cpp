@@ -3,6 +3,7 @@
 #include "LocalMap.h"
 #include "NETCollision.h"
 #include "NETRigidBody.h"
+#include "Server.h"
 namespace Bomberman
 {
 
@@ -11,7 +12,7 @@ namespace Bomberman
 ActorData::ActorData(float x, float y, float w, float h)
 {
 	
-	ObjectTransform.SetPosition(x, y);
+	ObjectTransform.SetPosition({ x, y });
 	ObjectTransform.SetDimensions(w, h);
 
 }
@@ -20,6 +21,11 @@ ActorData::ActorData(Transform t)
 	ObjectTransform = t;
 
 
+}
+int ActorData::GetID()
+{
+
+	return Server::ActorToID[this];
 }
 std::shared_ptr<SerialData> ActorData::GetPacketAnnounce()
 {

@@ -9,9 +9,7 @@ namespace Bomberman
 	/// </summary>
 	struct SerialData
 	{
-		int length;
-		//unsigned char* data;
-		unsigned char* data;
+		std::shared_ptr<std::vector<unsigned char>> data;
 		SerialData(int bytesToAllocate);
 		
 		~SerialData();

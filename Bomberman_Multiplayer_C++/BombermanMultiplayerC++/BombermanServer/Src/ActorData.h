@@ -26,7 +26,7 @@ public:
 	virtual void OnCollide(NETCollision& collisionInfo);
 	virtual void OnCollideWithStatic(NETCollision& collisionInfo);
 	virtual void OnCollideWithDynamic(NETCollision& collisionInfo);
-		
+	virtual int GetID();
 		
 
 		

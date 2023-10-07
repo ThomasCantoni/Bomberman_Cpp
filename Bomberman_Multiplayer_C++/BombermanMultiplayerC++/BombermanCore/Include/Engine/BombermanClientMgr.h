@@ -7,7 +7,7 @@
 #include <queue>
 #include "OnlinePlayer.h"
 #include "Delegates.h"
-
+#include "NetworkPacket.h"
 namespace Bomberman
 {
 	class Player;
@@ -21,7 +21,7 @@ namespace Bomberman
 	
 	class BombermanClientMgr
 	{
-		typedef int(*NetworkCommandGeneric)(const unsigned char*);
+		typedef int(*NetworkCommandGeneric)(const NetworkPacket);
 		
 
 		//DECLARATION SYNTAX FOR FOR NON STATIC CLASSES WOULD BE:
@@ -56,20 +56,20 @@ namespace Bomberman
 
 
 		static unsigned long GetIncomingPacketNumber();
-		static int  ReceiveFromServer(std::vector<unsigned char>* buffer);
+		static std::shared_ptr<std::vector<NetworkPacket>> ReceiveFromServer(std::vector<unsigned char>* buffer,int* length);
 		static void EnqueuePacket(unsigned char* data, int lengthToInsert);
-		static void EnqueuePacket(std::shared_ptr<unsigned char> data, int lengthToInsert);
+		static void EnqueuePacket(std::vector<unsigned char>* data, int lengthToInsert);
 
 		static void Update();
-		static int  ProcessMessage(const std::vector<unsigned char> message, const int msg_length);
+		static int  ProcessMessage(const std::shared_ptr<std::vector<NetworkPacket>> message, const int msg_length);
 		static void SendEggRequest(const Vector2 pos);
 
-		static int UpdateOnlinePlayer	(const unsigned char* message);
-		static int InstantiateEgg		(const unsigned char* message);
-		static int InstantiatePlayer	(const unsigned char* message);
-		static int KillOnlinePlayer		(const unsigned char* message);
-		static int Travel				(const unsigned char* message);
-		static int UpdateLocalPlayer(const unsigned char* message);
+		static int UpdateOnlinePlayer	(const NetworkPacket message);
+		static int InstantiateEgg		(const NetworkPacket message);
+		static int InstantiatePlayer	(const NetworkPacket message);
+		static int KillOnlinePlayer		(const NetworkPacket message);
+		static int Travel				(const NetworkPacket message);
+	
 		
 
 

@@ -18,6 +18,7 @@ namespace Bomberman
 
 	class RigidBody;
 	struct Collision;
+	struct NetworkPacket;
 	class Actor : public IUpdatable
 	{
 
@@ -34,10 +35,8 @@ namespace Bomberman
 		Actor(const Actor& other);
 		Actor& operator=(const Actor& other) = default;
 		Actor(const char* texture_path);
-		//virtual void OnCollide			(Collision& collisionInfo);
-		//virtual void OnCollideWithStatic  (Collision& collisionInfo);
-		//virtual void OnCollideWithDynamic (Collision& collisionInfo);
-		virtual std::shared_ptr<SerialData> GetPacketTransform() const;
+
+		virtual std::shared_ptr<NetworkPacket> GetPacketTransform() const;
 		void Update() override;
 		
 	};

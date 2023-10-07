@@ -67,23 +67,31 @@ int main(int argc, char** argv)
         });
     BombermanClientMgr::Initialize("127.0.0.1", 8888);
 
-
+    
 
     int  running = 1;
 
-
+       //std::thread drawerThread(&SDL_Object::EndFrameUpdate,SDL_Obj);
     while (running)
     {
 
-       // std::thread drawerThread(&SDL_Object::EndFrameUpdate,SDL_Obj);
+       
         
        BombermanTime::DeltaTimeUpdate();
          
          SDL_Obj->StartFrameUpdate();
        
         UpdateMgr::Update();
-       
         BombermanClientMgr::Update();
+       
+       // BombermanClientMgr::TransformsToSync[0]->SetPosition({ -1,0 });
+       // BombermanClientMgr::TransformsToSync[1]->SetPosition({ 1011,512 });
+       // BombermanClientMgr::TransformsToSync[2]->SetPosition({ 0,-1 });
+       //
+       //
+        //BombermanClientMgr::TransformsToSync[5]->SetPosition({ 64,64 });
+       // BombermanClientMgr::TransformsToSync[0x1c]->SetPosition({ 32,32 });
+
         SDL_Obj->EndFrameUpdate();
         
        // drawerThread.join();

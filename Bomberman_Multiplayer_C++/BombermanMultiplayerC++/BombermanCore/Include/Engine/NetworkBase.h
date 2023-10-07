@@ -9,9 +9,9 @@
 #include <arpa/inet.h>
 #endif
 #include "byteconverter.h"
-#define NETWORK_PERIOD 0.1f
+#define NETWORK_PERIOD 0.03f
 #define MAX_PACKET_SIZE 1024 //0x400
-#define PACKET_DELIMITER 0x7c
+//#define PACKET_DELIMITER 0x7c
 enum NETCOMMANDType // this type of command has object ID and payload
 {
 	Update = 0,		//update an actor in the scene according to ID

@@ -4,6 +4,8 @@
 #include <fstream>
 #include <time.h>
 #include "LocalMap.h"
+
+
 //#include "NETMap.h"
 #include "NETPhysicsMgr.h"
 namespace Bomberman
@@ -21,6 +23,8 @@ namespace Bomberman
 	int							Server::maxPacketSize;
 	std::vector<unsigned char>	Server::message;
 	std::map<unsigned int,std::shared_ptr<ActorData>>		Server::ObjectsToSync;
+	std::map<ActorData*,unsigned int>		Server::ActorToID;
+
 	//client lists:
 	//
 	std::map<unsigned int, std::shared_ptr<PlayerData>> Server::knownClients;
@@ -31,7 +35,7 @@ namespace Bomberman
 
 	void Server::Initialize(std::string address, int port,int mapIndex, int max_packet_size)
 	{
-		MapNames.push_back("..\\BombermanCore\\Include\\Maps\\map1.txt");
+		MapNames.push_back("..\\BombermanCore\\Include\\Maps\\map0.txt");
 
 #pragma region SocketInit
 		// Initialize Winsock dynamic library, this allows the usage of sockets.
@@ -93,7 +97,7 @@ namespace Bomberman
 		
 
 		currentMap = mapIndex;
-		LoadMap(currentMap);
+		LoadMap(mapIndex);
 		maxPacketSize = max_packet_size;
 
 		ServerNETCOMMANDS = std::unordered_map<int, Server::NetworkCommandGenericServer>();
@@ -109,6 +113,7 @@ namespace Bomberman
 	
 	int Server::SetMap(int MapIndex)
 	{
+		
 		currentMap = MapIndex;
 		//TO DO
 		// tell all players to change map
@@ -141,7 +146,7 @@ namespace Bomberman
 					{
 						break;
 					}
-					
+					message.resize(msgLength);
 					int bytesReceived = recvfrom(ServerSocket, (char*)message.data(), MAX_PACKET_SIZE, 0, (sockaddr*)&(IncomingClient), &sizeClient);
 					if (bytesReceived == -1)
 					{
@@ -188,8 +193,8 @@ namespace Bomberman
 				
 				
 
-				
-				ProcessMessage(IncomingClient,message);
+				std::shared_ptr<std::vector<NetworkPacket>> msg = NetworkPacket::Unpack(&message, false);
+				ProcessMessage(IncomingClient,msg,bytesReceived);
 				
 				SendWorldStatus(IncomingClient);
 				message.assign(message.size(), 0);
@@ -247,13 +252,16 @@ namespace Bomberman
 
 		while (std::getline(my_file, current_line))
 		{
-			if (current_line.empty() == true)
+			if (current_line.empty() == true ||
+				current_line == " " ||
+				(current_line[0] == '/' &&
+					current_line[1] == '/'))
 				continue;
 			int x, y, w, h;
 			bool isStatic;
 			//size_t current_index,next_index;
 
-			std::vector<std::string> splitted = byteconverter::split(current_line, ',');
+			std::vector<std::string> splitted = ByteConverter::split(current_line, ',');
 			x = stoi(splitted[0]);
 			y = stoi(splitted[1]);
 			w = stoi(splitted[2]);
@@ -275,6 +283,9 @@ namespace Bomberman
 		my_file.close();
 		//std::cout << debug_int << std::endl;
 		return MapIndex;
+		//std::list<SDL_Rect> list_to_add;
+
+	
 	}
 	
 	void Server::CheckClientStatus()
@@ -301,24 +312,19 @@ namespace Bomberman
 		
 	}
 	
-	void Server::ProcessMessage(sockaddr_in incoming,const std::vector<unsigned char> message)
+	void Server::ProcessMessage(sockaddr_in incoming,const std::shared_ptr<std::vector<NetworkPacket>> message,int length)
 	{
 		
 		std::shared_ptr<PlayerData> actorInQuestion = knownClients[(unsigned int)incoming.sin_addr.S_un.S_addr];
 		actorInQuestion->LastPacketDate = std::time(0);
 		
-		int remainingBytes = message.size();
-		std::vector<std::shared_ptr<unsigned char[]>> messageSplitted = byteconverter::split(message,  PACKET_DELIMITER);
-
-		for (auto currentPtr : messageSplitted)
+		int remainingBytes = length;
+		for (auto i =  message->begin();i != message->end();++i)
 		{
-			unsigned char* currentCommand = currentPtr.get();
+			NetworkPacket currentCommand = (*i);
 			if (remainingBytes > 0)
 			{
-		
-				int ID = byteconverter::BytesToInt(currentCommand, 0,false);
-				
-				NetworkCommandGenericServer toCall = ServerNETCOMMANDS[ID];
+				NetworkCommandGenericServer toCall = ServerNETCOMMANDS[currentCommand.CommandType];
 				if (toCall != nullptr)
 				{
 					
@@ -326,8 +332,6 @@ namespace Bomberman
 
 				}
 
-				
-				
 			}
 
 		}
@@ -351,17 +355,17 @@ namespace Bomberman
 		unsigned int key = static_cast<unsigned int>(s.sin_addr.S_un.S_addr);
 		int ID =(int)ObjectsToSync.size();
 
-		unsigned char Welcome[4 * 6];
-		byteconverter::BytesAppend(Welcome,24, 0, byteconverter::IntToBytes(ID),4);
-		byteconverter::BytesAppend(Welcome,24, 4, byteconverter::IntToBytes(currentMap),4);
-		byteconverter::BytesAppend(Welcome,24, 8, byteconverter::FloatToBytes(64),4);
-		byteconverter::BytesAppend(Welcome,24, 12,byteconverter::FloatToBytes(64),4);
-		byteconverter::BytesAppend(Welcome,24, 16,byteconverter::FloatToBytes(64),4);
-		byteconverter::BytesAppend(Welcome,24, 20,byteconverter::FloatToBytes(64),4);
+		std::shared_ptr<std::vector<unsigned char>> Welcome = std::make_shared<std::vector<unsigned char>>(4*6);
+		ByteConverter::BytesAppend(Welcome, 0, ByteConverter::IntToBytes(ID),4);
+		ByteConverter::BytesAppend(Welcome, 4, ByteConverter::IntToBytes(currentMap),4);
+		ByteConverter::BytesAppend(Welcome, 8, ByteConverter::FloatToBytes(64),4);
+		ByteConverter::BytesAppend(Welcome, 12,ByteConverter::FloatToBytes(64),4);
+		ByteConverter::BytesAppend(Welcome, 16,ByteConverter::FloatToBytes(64),4);
+		ByteConverter::BytesAppend(Welcome, 20,ByteConverter::FloatToBytes(64),4);
 
 		
 		// TODO: ID + MAP_ID + COLLIDER
-		sendto(ServerSocket, (char*)Welcome, 4*6, 0, (struct sockaddr*)&s, sizeof(s));
+		sendto(ServerSocket, (char*)Welcome->data(), 4 * 6, 0, (struct sockaddr*)&s, sizeof(s));
 
 		//std::shared_ptr<Transform> receivedTransform = std::make_shared<Transform>( reinterpret_cast<Transform*>(ISerializable::Deserialize(std::make_shared<SerialData>(ser))));
 	
@@ -370,6 +374,7 @@ namespace Bomberman
 		knownClients.insert({ key,newActor });
 		
 		ObjectsToSync[ID] = newActor;
+		ActorToID[newActor.get()] = ID;
 		//NETPhysicsMgr::AddItem(newActor->rigidbody);
 		
 	}
@@ -389,44 +394,59 @@ namespace Bomberman
 		for (auto i = ObjectsToSync.begin(); i != ObjectsToSync.end(); ++i)
 		{
 			int currentID = (*i).first;
-			if (currentID == 0x1c)
+			/*if (currentID == 0x1c)
 			{
 				std::cout << "Stop";
-			}
-			auto transform = (*i).second->GetPacketTransform();
-			//set command 
+			}*/
+			std::shared_ptr<SerialData> transform = (*i).second->GetPacketTransform();
 			
-			byteconverter::BytesAppend(message, target, byteconverter::IntToBytes((int)NETCOMMANDType::Update),4);
+			//set command 
+			int size = 0;
+			ByteConverter::BytesAppend(&message, target, ByteConverter::IntToBytes((int)NETCOMMANDType::Update).get(), 4);
 			target += sizeof(int);
+			size += 4;
 			// set ID of transform to update
-			byteconverter::BytesAppend(message, target, byteconverter::IntToBytes(currentID),4);
+			ByteConverter::BytesAppend(&message, target, ByteConverter::IntToBytes(currentID).get(), 4);
+			target += sizeof(int);
+			size += 4;
+			//data length
+		
+			size += transform->data->size();
+			size += 4;
+			int corroborateSize = 12 + transform->data->size();
+			ByteConverter::BytesAppend(&message, target, ByteConverter::IntToBytes(size).get(), 4);
 			target += sizeof(int);
 			//set data
-			byteconverter::BytesAppend(message, target, transform->data, transform->length);
-			target += transform->length;
-			byteconverter::BytesAppend(message, target, PACKET_DELIMITER);
-			target += sizeof(char);
+			ByteConverter::BytesAppend(&message, target, transform->data,transform->data->size());
+			target += transform->data->size();
 			++iterations;
 		}
 		int size = sizeof(client);
 		sendto(ServerSocket, (char*)message.data(), MAX_PACKET_SIZE, 0, (sockaddr*)&client, size);
 	}
-	int Server::ReceiveInput(sockaddr_in client,const unsigned char* msg)
+	int Server::ReceiveInput(sockaddr_in client,const NetworkPacket msg)
 	{
 		std::shared_ptr<PlayerData> p = knownClients[client.sin_addr.S_un.S_addr];
-		PlayerInputType ID = static_cast<PlayerInputType>(byteconverter::BytesToInt(msg, 4));
+		PlayerInputType ID = static_cast<PlayerInputType>(ByteConverter::BytesToInt(msg.Payload->data, 4));
 		switch (ID)
 		{
 			case Movement:
 			{
-				
-				float x = byteconverter::BytesToFloat(msg, 8, false);
-				float y = byteconverter::BytesToFloat(msg, 12, false);
+				int ID = ActorToID.at(p.get());
+				float x = ByteConverter::BytesToFloat(msg.Payload->data->data(), 8, false);
+				float y = ByteConverter::BytesToFloat(msg.Payload->data->data(), 12, false);
 				Vector2 newVel = Vector2(x, y);
-				
-				if (newVel.Magnitude() > 0)
+				if (ID == 0x1c)
 				{
-					std::cout << "";
+					std::cout << "Server X: "<<x <<"\n";
+					std::cout << "Server Y: " << y<< "\n";
+
+				}
+				float test = newVel.Magnitude();
+				if ( test > 1 )
+				{
+					newVel = Vector2(x, y);
+					//std::cout << "STOP. VELOCITY CHECK";
 				}
 				p->rigidbody->velocity = newVel;
 				break;

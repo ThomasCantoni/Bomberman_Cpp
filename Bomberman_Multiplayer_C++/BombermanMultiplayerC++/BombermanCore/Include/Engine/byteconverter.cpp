@@ -1,27 +1,161 @@
-#include "byteconverter.h"
+#include "ByteConverter.h"
 
-unsigned char* byteconverter::BytesCopy(unsigned char* Source, size_t destSize, int startIndex, int bytesToCopy)
+#pragma region OLD
+//int ByteConverter::BytesAppend(std::shared_ptr<std::shared_punsigned char> Dest, size_t destLength, int startIndex, unsigned char toInsert)
+//{
+//
+//	if (startIndex + 1 >= destLength)
+//	{
+//		return -1;
+//	}
+//
+//	Dest.get()[startIndex + 1] = toInsert;
+//
+//	return 0;
+//}
+//int ByteConverter::BytesAppend(unsigned char* Dest, size_t destLength, int startIndex, unsigned char* str2, int bytesToInsert)
+//{
+//
+//	if (startIndex == 0 && startIndex + bytesToInsert < destLength)
+//	{
+//		memcpy(Dest, str2, bytesToInsert);
+//		return 0;
+//	}
+//	for (int i = 0; (i < bytesToInsert); ++i)
+//	{
+//		if (startIndex + i >= destLength)
+//		{
+//			return -1;
+//		}
+//		char toInsert = str2[i];
+//		if (toInsert < 0x30)
+//		{
+//			//toInsert = 0x30;
+//		}
+//		Dest[startIndex + i] = toInsert;
+//	}
+//
+//	return 0;
+//}
+//int ByteConverter::BytesAppend(unsigned char* Dest, size_t destLength, int startIndex, float ToAppend)
+//{
+//	auto BUFFER_TEST = ByteConverter::FloatToBytes(ToAppend);
+//	int errors = ByteConverter::BytesAppend(Dest, destLength, startIndex, BUFFER_TEST, 4);
+//	free(BUFFER_TEST);
+//	return errors;
+//}
+//int ByteConverter::BytesAppend(unsigned char* Dest, size_t destLength, int startIndex, int ToAppend)
+//{
+//	auto BUFFER_TEST = ByteConverter::IntToBytes(ToAppend);
+//	int errors = ByteConverter::BytesAppend(Dest, destLength, startIndex, BUFFER_TEST, 4);
+//	free(BUFFER_TEST);
+//	return errors;
+//}
+//unsigned char* ByteConverter::BytesCopy(unsigned char* Source, size_t destSize, int startIndex, int bytesToCopy)
+//{
+//	unsigned char* toReturn = static_cast<unsigned char*>(malloc(bytesToCopy));
+//	if (toReturn == nullptr)
+//	{
+//		return NULL;
+//	}
+//	for (size_t i = 0; i < bytesToCopy; ++i)
+//	{
+//		toReturn[i] = Source[startIndex + i];
+//	}
+//
+//	return toReturn;
+//}
+
+//int ByteConverter::BytesAppend(unsigned char* Dest, size_t destLength, int startIndex, unsigned char toInsert)
+//{
+//
+//	if (startIndex + 1 >= destLength)
+//	{
+//		return -1;
+//	}
+//
+//	Dest[startIndex + 1] = toInsert;
+//
+//	return 0;
+//}
+#pragma endregion
+
+int ByteConverter::BytesCopy(std::shared_ptr<std::vector<unsigned char>> destination, std::shared_ptr<std::vector<unsigned char>> src, int startIndex, int bytesToCopy)
 {
-	unsigned char* toReturn = static_cast<unsigned char*>(malloc(bytesToCopy));
-	if (toReturn == nullptr)
+	if (startIndex > src->size())
 	{
-		return NULL;
+		return -1;
 	}
-	for (size_t i = 0; i < bytesToCopy; ++i)
-	{
-		toReturn[i] = Source[startIndex + i];
-	}
+	int diff = (startIndex + bytesToCopy) - destination->size();
 
-	return toReturn;
+	if ( diff > 0)
+	{
+		destination->resize(destination->size() + diff);
+	}
+	for (int i = 0; i < bytesToCopy; i++)
+	{
+		destination->data()[startIndex + i] = src->data()[i];
+	}
+	return 0;
 }
-int byteconverter::BytesAppend(unsigned char* Dest, size_t destLength, int startIndex, unsigned char* str2, int bytesToInsert)
+int ByteConverter::BytesAppend(std::shared_ptr<std::vector<unsigned char>> Dest, int startIndex, std::vector<unsigned char>* toInsert, int bytesToInsert)
 {
-	
-	if (startIndex == 0 && startIndex + bytesToInsert < destLength)
+
+	if (startIndex + bytesToInsert > Dest->size())
 	{
-		memcpy(Dest, str2, bytesToInsert);
-		return 0;
+		Dest->resize(Dest->size() + bytesToInsert);
 	}
+	for (int i = 0; i < bytesToInsert; ++i)
+	{
+		Dest->data()[startIndex+i] = toInsert->at(i);
+
+	}
+	
+
+	return 0;
+}
+
+int ByteConverter::BytesAppend(std::shared_ptr<std::vector<unsigned char>> Dest,int startIndex, std::shared_ptr<std::vector<unsigned char >>toInsert,int bytesToInsert)
+{
+
+
+	ByteConverter::BytesAppend(Dest, startIndex, toInsert.get(), bytesToInsert);
+
+	return 0;
+}
+int ByteConverter::BytesAppend(std::shared_ptr<std::vector<unsigned char>> Dest, int startIndex, std::shared_ptr<std::vector<unsigned char >>toInsert)
+{
+
+
+	ByteConverter::BytesAppend(Dest, startIndex, toInsert.get(), toInsert->size());
+
+	return 0;
+}
+int ByteConverter::BytesAppend(std::vector<unsigned char>* Dest, int startIndex, std::vector<unsigned char>* toInsert,int bytesToInser)
+{
+
+	if (startIndex + toInsert->size() > Dest->size())
+	{
+		unsigned int diff = Dest->size() - toInsert->size();
+		Dest->resize(Dest->size() + diff);
+	}
+	for (int i = 0; i < toInsert->size(); ++i)
+	{
+		(*Dest)[startIndex+i] = (*toInsert)[i];
+		
+	}
+
+
+	return 0;
+}
+int ByteConverter::BytesAppend(std::vector<unsigned char>* Dest, int startIndex, std::shared_ptr< std::vector<unsigned char>> toInsert, int bytesToInsert)
+{
+	ByteConverter::BytesAppend(Dest, startIndex, toInsert.get(), bytesToInsert);
+	return 0;
+}
+
+int ByteConverter::BytesAppend(std::string& Dest, size_t destLength, int startIndex, std::string& str2, int bytesToInsert)
+{
 	for (int i = 0; (i < bytesToInsert); ++i)
 	{
 		if (startIndex + i >= destLength)
@@ -38,126 +172,43 @@ int byteconverter::BytesAppend(unsigned char* Dest, size_t destLength, int start
 
 	return 0;
 }
-int byteconverter::BytesAppend(unsigned char* Dest, size_t destLength, int startIndex, float ToAppend)
+int ByteConverter::BytesAppend(std::shared_ptr<std::vector<unsigned char>> Dest, int startIndex, int toInsert) 
 {
-	auto BUFFER_TEST = byteconverter::FloatToBytes3(ToAppend);
-	int errors = byteconverter::BytesAppend(Dest, destLength, startIndex, BUFFER_TEST, 4);
-	free(BUFFER_TEST);
-	return errors;
-}
-int byteconverter::BytesAppend(unsigned char* Dest, size_t destLength, int startIndex, int ToAppend)
-{
-	auto BUFFER_TEST = byteconverter::IntToBytes(ToAppend);
-	int errors = byteconverter::BytesAppend(Dest, destLength, startIndex, BUFFER_TEST, 4);
-	free(BUFFER_TEST);
-	return errors;
-}
-int byteconverter::BytesAppend(std::string& Dest, size_t destLength, int startIndex, std::string& str2, int bytesToInsert)
-{
-	for (int i = 0; (i < bytesToInsert); ++i)
+
+	if (startIndex + 4 > Dest->size())
 	{
-		if (startIndex + i >= destLength)
-		{
-			return -1;
-		}
-		char toInsert = str2[i];
-		if (toInsert < 0x30)
-		{
-			//toInsert = 0x30;
-		}
-		Dest[startIndex + i] = toInsert;
-	}
-
-	return 0;
-}
-int byteconverter::BytesAppend(unsigned char* Dest, size_t destLength, int startIndex, unsigned char toInsert)
-{
-
-	if (startIndex + 1 >= destLength)
-	{
-		return -1;
-	}
-
-	Dest[startIndex + 1] = toInsert;
-
-	return 0;
-}
-int byteconverter::BytesAppend(std::shared_ptr<unsigned char> Dest, size_t destLength, int startIndex, unsigned char toInsert)
-{
-
-	if (startIndex + 1 >= destLength)
-	{
-		return -1;
-	}
-
-	Dest.get()[startIndex + 1] = toInsert;
-
-	return 0;
-}
-int byteconverter::BytesAppend(std::shared_ptr<unsigned char> Dest, size_t destLength, int startIndex, std::shared_ptr<unsigned char >toInsert,int bytesToInsert)
-{
-
-	if (startIndex + 1 >= destLength)
-	{
-		return -1;
-	}
-
-	byteconverter::BytesAppend(Dest.get(), destLength, startIndex, toInsert.get(),bytesToInsert);
-
-	return 0;
-}
-int byteconverter::BytesAppend(std::vector<unsigned char> Dest, int startIndex, unsigned char* toInsert, int bytesToInsert)
-{
-
-	if (startIndex + bytesToInsert >= Dest.capacity())
-	{
-		Dest.resize(Dest.size() + bytesToInsert);
-	}
-	for (int i = 0; i < bytesToInsert; ++i)
-	{
-		Dest[startIndex+i] = toInsert[i];
-
+		Dest->resize(Dest->size() + 4);
 	}
 	
-
-	return 0;
-}
-int byteconverter::BytesAppend(std::vector<unsigned char> Dest, int startIndex, std::vector<unsigned char> toInsert, int bytesToInsert)
-{
-
-	if (startIndex + bytesToInsert >= Dest.capacity())
-	{
-		Dest.resize(Dest.size() + bytesToInsert);
-	}
-	for (int i = 0; i < bytesToInsert; ++i)
-	{
-		Dest.push_back(toInsert[i]);
-
-	}
-
-
-	return 0;
-}
-int byteconverter::BytesAppend(std::vector<unsigned char> Dest, int startIndex, int toInsert)
-{
-
-	if (startIndex + 4 >= Dest.capacity())
-	{
-		Dest.resize(Dest.size() + 4);
-	}
-	unsigned char* toInsertC;
-	toInsertC =  byteconverter::IntToBytes(toInsert) ;
+	auto toInsertC =  ByteConverter::IntToBytes(toInsert) ;
 	for (int i = 0; i < 4; ++i)
 	{
-		Dest[startIndex+i] = toInsertC[i];
+		Dest->data()[startIndex+i] = toInsertC.get()->at(i);
+
+	}
+	
+
+	return 0;
+}
+int ByteConverter::BytesAppend(std::shared_ptr<std::vector<unsigned char>> Dest, int startIndex, float toInsert)
+{
+
+	if (startIndex + 4 > Dest->size())
+	{
+		Dest->resize(Dest->size() + 4);
+	}
+	
+	auto  toInsertC = ByteConverter::FloatToBytes(toInsert);
+	for (int i = 0; i < 4; ++i)
+	{
+		Dest->data()[startIndex + i] = toInsertC->at(i);
 
 	}
 
 
 	return 0;
 }
-
-int byteconverter::BytesToInt(const unsigned char* buffer, int startIndex, bool BigEndian)
+int ByteConverter::BytesToInt(const unsigned char* buffer, int startIndex, bool BigEndian)
 {
 
 	char buffer2[4];
@@ -172,33 +223,28 @@ int byteconverter::BytesToInt(const unsigned char* buffer, int startIndex, bool 
 		return (int)(buffer2[3] << 24) + (buffer2[2] << 16) + (buffer2[1] << 8) + buffer2[0];
 
 }
-int byteconverter::BytesToIntString(std::string buffer, int startIndex)
+int ByteConverter::BytesToInt(const std::vector<unsigned char>* buffer, int startIndex, bool BigEndian)
 {
-	unsigned char* str = (unsigned char*)buffer.c_str();
 
-	char* buffer2 = (char*)calloc(1, sizeof(int));
-	if (buffer2 == NULL)
-		return -1;
-	for (int i = 0; i < 4; i++)
-	{
-		buffer2[i] = str[startIndex + i];
-	}
-	return (int)(buffer2[0] << 24) + (buffer2[1] << 16) + (buffer2[2] << 8) + buffer2[3];
-
+	ByteConverter::BytesToInt(buffer->data(), startIndex, BigEndian);
+	return 0;
 }
-unsigned char* byteconverter::IntToBytes(int num)
+int ByteConverter::BytesToInt(const std::shared_ptr<std::vector<unsigned char>> buffer, int startIndex, bool BigEndian)
 {
-	unsigned char* bytes = static_cast<unsigned char*>(calloc(1, sizeof(int)));
-	if (bytes == NULL)
-		return NULL;
+	return ByteConverter::BytesToInt(buffer->data(), startIndex, BigEndian);
+	
+}
+std::shared_ptr<std::vector<unsigned char>> ByteConverter::IntToBytes(int num)
+{
+	auto bytes = std::make_shared<std::vector<unsigned char>>(4);
 	for (int i = 0; i < sizeof(int); i++)
 	{
-		bytes[i] = (num >> (i * 8)) & 0xff;
+		bytes->data()[i] = (num >> (i * 8)) & 0xff;
 	}
 	return bytes;
 
 }
-std::shared_ptr<std::string> byteconverter::IntToBytes_String(int num)
+std::shared_ptr<std::string> ByteConverter::IntToBytes_String(int num)
 {
 	char b2[4];
 	for (int i = 0; i < sizeof(int); i++)
@@ -209,44 +255,36 @@ std::shared_ptr<std::string> byteconverter::IntToBytes_String(int num)
 
 	return shr;
 }
-/// <summary>
-/// DEPRECATED, PLEASE USE FloatToBytes3 INSTEAD
-/// </summary>
-/// <param name="toConvert"></param>
-/// <returns></returns>
-unsigned char* byteconverter::FloatToBytes(float toConvert)
+
+void ByteConverter::FloatToBytes(float toConvert,std::shared_ptr<std::vector<unsigned char>> bufferToFill)
 {
-	unsigned char buffer[sizeof(float)];
-	std::memcpy(buffer, &toConvert, sizeof(float));
-	return buffer;
+	std::memcpy(bufferToFill.get()->data(), &toConvert, sizeof(float));
+	
 
 }
 
-
-unsigned char* byteconverter::FloatToBytes3(float toConvert)
+std::shared_ptr<std::vector<unsigned char>> ByteConverter::FloatToBytes(float toConvert)
 {
-
-	unsigned char* buffer = (unsigned char*)calloc(1, sizeof(float));
-	if (buffer != NULL)
-	{
-		memcpy(buffer, &toConvert, sizeof(float));
-
-	}
-	return buffer;
-
-
+	std::shared_ptr<std::vector<unsigned char>> t = std::make_shared<std::vector<unsigned char>>(4);
+	ByteConverter::FloatToBytes(toConvert, t);
+	return t;
 }
-void byteconverter::FloatToBytes3(float toConvert, unsigned char* toFill)
-{
 
-	//unsigned char* buffer = (unsigned char*)calloc(1, sizeof(float));
-	if (toFill != NULL)
-	{
-		memcpy(toFill, &toConvert, sizeof(float));
+//unsigned char* ByteConverter::FloatToBytes(float toConvert)
+//{
+//
+//	unsigned char* buffer = (unsigned char*)calloc(1, sizeof(float));
+//	if (buffer != NULL)
+//	{
+//		memcpy(buffer, &toConvert, sizeof(float));
+//
+//	}
+//	return buffer;
+//
+//
+//}
 
-	}
-}
-std::shared_ptr<std::string> byteconverter::FloatToBytes3_Str(float toConvert)
+std::shared_ptr<std::string> ByteConverter::FloatToBytes_Str(float toConvert)
 {
 
 	unsigned char* buffer = (unsigned char*)calloc(1, sizeof(float));
@@ -260,15 +298,15 @@ std::shared_ptr<std::string> byteconverter::FloatToBytes3_Str(float toConvert)
 
 
 }
-unsigned char** byteconverter::FloatToBytes2(float toConvert)
-{
-	//unsigned char const * buffer = (unsigned char*)calloc(1, sizeof(float));
-	float f = toConvert;
-	unsigned char* buffer = reinterpret_cast<unsigned char*>(&f);
-	return &buffer;
-
-}
-float byteconverter::BytesToFloat(const unsigned char* bytes, int startIndex, bool big_endian)
+//unsigned char** byteconverter::FloatToBytes2(float toConvert)
+//{
+//	//unsigned char const * buffer = (unsigned char*)calloc(1, sizeof(float));
+//	float f = toConvert;
+//	unsigned char* buffer = reinterpret_cast<unsigned char*>(&f);
+//	return &buffer;
+//
+//}
+float ByteConverter::BytesToFloat(const unsigned char* bytes, int startIndex, bool big_endian)
 {
 
 	if (big_endian)
@@ -278,7 +316,17 @@ float byteconverter::BytesToFloat(const unsigned char* bytes, int startIndex, bo
 
 	return u.f;
 }
-std::vector<std::string> byteconverter::split(const std::string& s, char delimiter)
+float ByteConverter::BytesToFloat(const std::vector<unsigned char>* bytes, int startIndex, bool big_endian)
+{
+
+	if (big_endian)
+		u.ul = (bytes->data()[startIndex + 0] << 24) | (bytes->data()[startIndex + 1] << 16) | (bytes->data()[startIndex + 2] << 8) | bytes->data()[startIndex + 3];
+	else
+		u.ul = (bytes->data()[startIndex + 3] << 24) | (bytes->data()[startIndex + 2] << 16) | (bytes->data()[startIndex + 1] << 8) | bytes->data()[startIndex + 0];
+
+	return u.f;
+}
+std::vector<std::string> ByteConverter::split(const std::string& s, char delimiter)
 {
 	std::vector<std::string> tokens;
 	std::string token;
@@ -290,7 +338,7 @@ std::vector<std::string> byteconverter::split(const std::string& s, char delimit
 	return tokens;
 }
 
-std::vector<std::shared_ptr<unsigned char[]>> byteconverter::split(const unsigned char* toSplit, int toSplitLength, char delimiter)
+std::vector<std::shared_ptr<unsigned char[]>> ByteConverter::split(const unsigned char* toSplit, int toSplitLength, char delimiter)
 {
 	std::vector<std::shared_ptr<unsigned char[]>> tokens = std::vector< std::shared_ptr<unsigned char[]>>();
 	
@@ -320,36 +368,36 @@ std::vector<std::shared_ptr<unsigned char[]>> byteconverter::split(const unsigne
 	return tokens;
 }
 
-std::vector<std::shared_ptr<unsigned char[]>> byteconverter::split(const std::vector<unsigned char> toSplit, char delimiter)
+
+std::vector<std::vector<unsigned char>*>* ByteConverter::split(const std::vector<unsigned char>* toSplit, char delimiter)
 {
-	std::vector<std::shared_ptr<unsigned char[]>> tokens = std::vector< std::shared_ptr<unsigned char[]>>();
+	std::vector<std::vector<unsigned char>*>* tokens = new std::vector<std::vector<unsigned char>*>();
 
 	int startingPoint = 0;
-	for (int i = 0; i < toSplit.size(); ++i)
+	for (int i = 0; i < toSplit->size(); ++i)
 	{
 
-		if (toSplit.at(i) == delimiter)
+		if (toSplit->at(i) == delimiter)
 		{
 
-			std::shared_ptr<unsigned char[]> newToken(new unsigned char[i - startingPoint]);
-
+			std::vector<unsigned char>* newToken = new std::vector<unsigned char>();
+			newToken->reserve(i - startingPoint);
 			for (int j = startingPoint; j < i; ++j)
 			{
-				newToken.get()[j - startingPoint] = toSplit[j];
-				//if ((j - startingPoint) % 4 == 0)
+				
+				newToken->push_back( toSplit->at(j));			//if ((j - startingPoint) % 4 == 0)
 				//	std::cout << "\n";
 				//std::cout << std::hex << (int)newToken.get()[j - startingPoint] << std::dec << "|";
 			}
-			startingPoint = i + 1;
 			//std::cout << "\n\n";
 
-			tokens.push_back(newToken);
+			startingPoint = i + 1;
+			tokens->push_back(newToken);
 		}
 	}
 
 	return tokens;
 }
-
 /// <summary>
 /// INCOMPLETE!!!!!
 /// Searches for a substring in 'Input', then removes the matching characters if found. 
@@ -359,7 +407,7 @@ std::vector<std::shared_ptr<unsigned char[]>> byteconverter::split(const std::ve
 /// <param name="Input"> = Modifiable input string. The substring matching with 'ToScan' will be removed</param>
 /// <param name="ToScan"> = The substring to search in input</param>
 /// <returns> true if 'Input' contains 'ToScan', otherwise returns false </returns>
-bool byteconverter::Scan(std::string Input, std::string ToScan)
+bool ByteConverter::Scan(std::string Input, std::string ToScan)
 {
 	size_t len_a, len_b;
 	len_a = Input.length();
@@ -379,9 +427,9 @@ bool byteconverter::Scan(std::string Input, std::string ToScan)
 /// <param name="StartIndex">The start position of the range to erase</param>
 /// <param name="BytesToCutAmount">How many characters to erase</param>
 /// <returns>Returns a string without the range specified</returns>
-unsigned char* byteconverter::Cut(unsigned char** Input,int InputLength, int StartIndex, int BytesToCutAmount)
+unsigned char* ByteConverter::Cut(unsigned char** Input,int InputLength, int StartIndex, int BytesToCutAmount)
 {
-	int length1 = StartIndex;
+	/*int length1 = StartIndex;
 	int length2 = InputLength - (StartIndex + BytesToCutAmount);
 	unsigned char* cutString1 = static_cast<unsigned char*>(malloc(length1));
 	unsigned char* cutString2 = static_cast<unsigned char*>(malloc(length2));
@@ -398,13 +446,13 @@ unsigned char* byteconverter::Cut(unsigned char** Input,int InputLength, int Sta
 		free(cutString2);
 
 		return cutFinal;
-	}
+	}*/
 	return nullptr;
 }
 
-std::shared_ptr<unsigned char> byteconverter::Cut(std::shared_ptr<unsigned char> Input, int InputLength, int StartIndex, int BytesToCutAmount)
+std::shared_ptr<std::vector<unsigned char>> ByteConverter::EraseRegion(std::shared_ptr<std::vector<unsigned char>> Input, int InputLength, int StartIndex, int BytesToCutAmount)
 {
-	int length1 = StartIndex;
+	/*int length1 = StartIndex;
 	int length2 = InputLength - (StartIndex + BytesToCutAmount);
 	unsigned char* cutString1 = static_cast<unsigned char*>(malloc(length1));
 	unsigned char* cutString2 = static_cast<unsigned char*>(malloc(length2));
@@ -421,6 +469,6 @@ std::shared_ptr<unsigned char> byteconverter::Cut(std::shared_ptr<unsigned char>
 		free(cutString2);
 
 		return cutFinal;
-	}
+	}*/
 	return nullptr;
 }

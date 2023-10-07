@@ -14,13 +14,13 @@ struct Vector2
 	void Vec2_Normalize(Vector2* ToNormalize);*/
 	Vector2()
 	{
-		Vector2::x = 0;
-		Vector2::y = 0;
+		x = 0;
+		y = 0;
 	}
 	Vector2(float x, float y)
 	{
-		Vector2::x = x;
-		Vector2::y = y;
+		this->x = x;
+		this->y = y;
 	}
 	bool operator>(const Vector2& other)
 	{
@@ -29,37 +29,35 @@ struct Vector2
 		
 		return m1 > m2;
 	}
-	Vector2& operator+(const Vector2& other)
+	Vector2& operator+(const Vector2& other) const
 	{
-		
-		x+= other.x;
-		y+= other.y;
-		return *this;
+		Vector2 sum;
+		sum.x = x + other.x;
+		sum.y = y + other.y;
+		return sum;
 	}
-	Vector2& operator-(const Vector2& other)
+	Vector2& operator-(const Vector2& other) const
 	{
-		
-		x -=other.x;
-		y -=other.y;
-		return *this;
+		Vector2 diff;
+		diff.x = x- other.x;
+		diff.y = y- other.y;
+		return diff;
 	}
-	Vector2& operator*(const float other)
+	const Vector2 operator*(const float scalar) const
 	{
-		x *= other;
-		y *= other;
-		return *this;
+		return Vector2(x * scalar, y * scalar);
 	}
-	Vector2& operator*(const Vector2& other)
+	const Vector2 operator*(const Vector2& other) const
 	{
-		x *= other.x;
-		y *= other.y;
-		return *this;
+		float mulx = x * other.x;
+		float muly = y * other.y;
+		return Vector2(mulx,muly);
 	}
-	Vector2& operator/(const Vector2& other)
+	const Vector2 operator/(const Vector2& other) const
 	{
-		x /= other.x;
-		y /= other.y;
-		return *this;
+		float divx = x / other.x;
+		float divy = y / other.y;
+		return Vector2(divx, divy);
 	}
 	 Vector2& operator=(const Vector2& other)
 	{
@@ -75,6 +73,13 @@ struct Vector2
 		 y += other.y;
 		 return *this;
 	 }
+		Vector2& operator-=(const Vector2& other)
+		{
+	
+			 x -= other.x;
+			 y -= other.y;
+			return *this;
+		}
 	static const Vector2& Zero()
 	{
 		return  { 0,0};

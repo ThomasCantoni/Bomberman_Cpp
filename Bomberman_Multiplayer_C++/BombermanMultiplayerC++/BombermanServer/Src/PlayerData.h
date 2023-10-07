@@ -4,7 +4,10 @@
 #include <time.h>
 namespace Bomberman
 {
-	
+#define DEFAULT_PLAYER_SPEED 100
+#define DEFAULT_PLAYER_SPEED_VEC {100,100}
+
+
 	class PlayerData : public ActorData
 	{
 	public :

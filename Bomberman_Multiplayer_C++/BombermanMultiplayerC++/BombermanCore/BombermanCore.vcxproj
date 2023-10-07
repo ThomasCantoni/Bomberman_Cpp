@@ -21,7 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Include\Engine\Actor.cpp" />
     <ClCompile Include="Include\Engine\BombermanClientMgr.cpp" />
-    <ClCompile Include="Include\Engine\byteconverter.cpp" />
+    <ClCompile Include="Include\Engine\ByteConverter.cpp" />
     <ClCompile Include="Include\Engine\Delegate.cpp" />
     <ClCompile Include="Include\Engine\Eggbomb.cpp" />
     <ClCompile Include="Include\Engine\Eggsplosion.cpp" />
@@ -39,13 +39,14 @@
     <ClCompile Include="Include\Engine\UpdateMgr.cpp" />
     <ClCompile Include="Include\Engine\NetworkBase.cpp" />
     <ClCompile Include="Include\Engine\MapManager.cpp" />
+    <ClCompile Include="Include\Engine\NetworkPacket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Engine\BombermanClientMgr.h" />
     <ClInclude Include="Include\Engine\BombermanCore.h" />
     <ClInclude Include="Include\Engine\Actor.h" />
     <ClInclude Include="Include\Engine\bomberman.h" />
-    <ClInclude Include="Include\Engine\byteconverter.h" />
+    <ClInclude Include="Include\Engine\ByteConverter.h" />
     <ClInclude Include="Include\Engine\Delegates.h" />
     <ClInclude Include="Include\Engine\Eggbomb.h" />
     <ClInclude Include="Include\Engine\Eggsplosion.h" />
@@ -66,8 +67,10 @@
     <ClInclude Include="Include\Engine\NetworkBase.h" />
     <ClInclude Include="Include\Engine\MapManager.h" />
     <ClInclude Include="Include\Engine\RigidbodyType.h" />
+    <ClInclude Include="Include\Engine\NetworkPacket.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Include\Maps\map0.txt" />
     <Text Include="Include\Maps\map1.txt" />
     <Text Include="Include\Net\ProtocolDefiner.txt" />
   </ItemGroup>

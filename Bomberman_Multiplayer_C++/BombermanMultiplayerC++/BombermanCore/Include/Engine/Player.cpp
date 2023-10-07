@@ -17,7 +17,7 @@ namespace Bomberman
 		speed = 200;
 
 		transform.SetDimensions(64, 64);
-		transform.SetPosition(64, 64);
+		transform.SetPosition(Vector2(32,32));
 
 		LocalPlayer = this;
 
@@ -58,12 +58,14 @@ namespace Bomberman
 		GetInput();
 		TimerDropEggbomb -= BombermanTime::DeltaTime;
 
-
-		velocity.x = (float)(keys[SDL_SCANCODE_RIGHT] - keys[SDL_SCANCODE_LEFT]);
-		velocity.y = (float)(keys[SDL_SCANCODE_DOWN] - keys[SDL_SCANCODE_UP]);
-		velocity = velocity.Normalize()*speed;
 		
-		transform.AddVelocity(velocity*BombermanTime::DeltaTime);;
+		velocity.x = static_cast<float>(keys[SDL_SCANCODE_RIGHT] - keys[SDL_SCANCODE_LEFT]);
+		velocity.y = static_cast<float>(keys[SDL_SCANCODE_DOWN] - keys[SDL_SCANCODE_UP]);
+		velocity = velocity.Normalize();
+		std::cout << "velocity.x :" << velocity.x << "\n";
+		std::cout << "velocity.y :" << velocity.y << "\n";
+
+		//transform.AddVelocity(velocity*BombermanTime::DeltaTime);;
 
 		
 	}
@@ -81,19 +83,11 @@ namespace Bomberman
 	}
 
 
-	std::shared_ptr<SerialData> Player::GetPacketTransform() const
+	std::shared_ptr<NetworkPacket> Player::GetPacketTransform() const 
 	{
-
-		auto serialTr = transform.Serialize();
-
-		auto  d = std::make_shared<SerialData>(sizeof(int) * 2);
-		byteconverter::BytesAppend(d->data, d->length, 0, ID);
-		byteconverter::BytesAppend(d->data, d->length, 4, (int)NETCOMMANDType::Update);
-
-		d->Append(*serialTr.get());
-		d->Print();
-
-		return d;
+		std::shared_ptr<NetworkPacket> net = std::make_shared<NetworkPacket>(NETCOMMANDType::Update,ID,transform.Serialize());
+		
+		return net;
 	}
 #pragma region OLD
 	/*
@@ -320,19 +314,27 @@ namespace Bomberman
 	*/
 #pragma endregion
 
-	std::shared_ptr<SerialData> Player::GetPacketMovement() const
+	std::shared_ptr<NetworkPacket> Player::GetPacketMovement() const
 	{
-		auto velocityData = std::make_shared<SerialData>(16);
-		Vector2 vel = velocity;
-		if (vel.x != 0 || vel.y != 0)
-		{
-			std::cout << "";
-		}
-		byteconverter::BytesAppend(velocityData->data, 16, 0, NETCOMMANDType::PlayerInput);
-		byteconverter::BytesAppend(velocityData->data, 16, 4, PlayerInputType::Movement);
-		byteconverter::BytesAppend(velocityData->data, 16, 8, vel.x);
-		byteconverter::BytesAppend(velocityData->data, 16, 12, vel.y);
-		return velocityData;
+
+	
+
+		auto velocityData = std::make_shared<SerialData>(24);
+		
+		
+		ByteConverter::BytesAppend(velocityData->data, 0, NETCOMMANDType::PlayerInput);
+		ByteConverter::BytesAppend(velocityData->data, 4, ID);
+		ByteConverter::BytesAppend(velocityData->data,8, 24);
+
+		ByteConverter::BytesAppend(velocityData->data, 12, PlayerInputType::Movement);
+		ByteConverter::BytesAppend(velocityData->data, 16, velocity.x);
+		ByteConverter::BytesAppend(velocityData->data, 20, velocity.y);
+
+		
+		std::shared_ptr<NetworkPacket> net = std::make_shared<NetworkPacket>();
+		net->Payload = velocityData;
+		return net;
+		
 	}
 }
 

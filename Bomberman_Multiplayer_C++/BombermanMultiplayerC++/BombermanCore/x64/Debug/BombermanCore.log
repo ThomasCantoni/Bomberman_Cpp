@@ -1,6 +1,30 @@
-﻿  byteconverter.cpp
-C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\Include\Engine\byteconverter.cpp(221): warning C4172: returning address of local variable or temporary: buffer
-C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\Include\Engine\byteconverter.cpp(268): warning C4172: returning address of local variable or temporary: buffer
+﻿  BombermanClientMgr.cpp
+C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\Include\Engine\BombermanClientMgr.cpp(219,46): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\Include\Engine\BombermanClientMgr.cpp(254,90): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xutility(261): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xutility(260,16): message : see reference to function template instantiation '_Ty *std::construct_at<_Ty,unsigned __int64,0x0>(_Ty *const ,unsigned __int64 &&) noexcept(<expr>)' being compiled
+          with
+          [
+              _Ty=Bomberman::SerialData
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\memory(1983): message : see reference to function template instantiation 'void std::_Construct_in_place<_Ty,unsigned __int64>(_Ty &,unsigned __int64 &&) noexcept(false)' being compiled
+          with
+          [
+              _Ty=Bomberman::SerialData
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\memory(2663): message : see reference to function template instantiation 'std::_Ref_count_obj2<Bomberman::SerialData>::_Ref_count_obj2<_Ty>(_Ty &&)' being compiled
+          with
+          [
+              _Ty=unsigned __int64
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\memory(2664,20): message : see reference to function template instantiation 'std::_Ref_count_obj2<Bomberman::SerialData>::_Ref_count_obj2<_Ty>(_Ty &&)' being compiled
+          with
+          [
+              _Ty=unsigned __int64
+          ]
+C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\Include\Engine\NetworkPacket.h(26): message : see reference to function template instantiation 'std::shared_ptr<Bomberman::SerialData> std::make_shared<Bomberman::SerialData,unsigned __int64>(unsigned __int64 &&)' being compiled
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xutility(268): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\Include\Engine\BombermanClientMgr.cpp(125): warning C4715: 'Bomberman::BombermanClientMgr::Initialize': not all control paths return a value
 WS2_32.lib(WS2_32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in SDL2.lib(SDL2.dll); second definition ignored
 SDL2_image.lib(SDL2_image.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in SDL2.lib(SDL2.dll); second definition ignored
   BombermanCore.vcxproj -> C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\x64\Debug\BombermanCore.lib

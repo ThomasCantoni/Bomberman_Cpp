@@ -37,14 +37,12 @@ All packets have a base definition of 4 bytes which is the ID of the command exi
 but the remaining structure of the packet changes depending on the command we want to perform.
 The commands are internally named NetCommandGeneric.
 
-If the NetCommandGeneric requires an ObjectID then it will be present in the next 4 bytes as below.
+If the NetCommandGeneric requires an ObjectID then it will be present in the position shown below.
 BYTES 0 TO 4	: NET COMMAND ID
-BYTES 4 TO 8	: OBJECT ID	IF NEEDED BY NET COMMAND
-FROM 8 ONWARDS	: DATA PAYLOAD 
-
-If not then the next bytes are all going to be payload specific.
-BYTES 0 TO 4	: NET COMMAND ID
-FROM 4 ONWARDS	: DATA PAYLOAD 
+BYTES 4 TO 8	: OBJECT ID	
+FROM 8 TO 12	: PACKET LENGTH
+FROM 12 ONWARDS	: DATA PAYLOAD 
+ 
 
 
 SERVER COMMANDS

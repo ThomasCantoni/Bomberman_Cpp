@@ -10,7 +10,7 @@ namespace Bomberman
 	{
 		
 
-		map_names[0] = "..\\BombermanCore\\Include\\Maps\\map1.txt";
+		map_names[0] = "..\\BombermanCore\\Include\\Maps\\map0.txt";
 	}
 	void MapManager::LoadMap(int index)
 	{
@@ -28,13 +28,16 @@ namespace Bomberman
 			int debug_int = 0;
 			while (std::getline(my_file, current_line))
 			{
-				if (current_line.empty() == true)
+				if (current_line.empty() == true || 
+					current_line == " " ||  
+					(current_line[0] == '/'&&
+					current_line[1] == '/'))
 					continue;
 				int x, y, w, h;
 				bool isStatic;
 				//size_t current_index,next_index;
 
-				std::vector<std::string> splitted = byteconverter::split(current_line, ',');
+				std::vector<std::string> splitted = ByteConverter::split(current_line, ',');
 				x = stoi(splitted[0]);
 				y = stoi(splitted[1]);
 				w = stoi(splitted[2]);

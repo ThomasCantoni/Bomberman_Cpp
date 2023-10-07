@@ -53,7 +53,22 @@ namespace Bomberman {
 			return;
 		}
 		
-		Owner->ObjectTransform.AddVelocity(velocity * velocityMultiplier*BombermanTime::DeltaTime);
+		if (Owner->GetID() == 0x1c)
+		{
+			system("cls");
+			std::cout << "velocity.x :" << velocity.x << "\n";
+			std::cout << "velocity.y :" << velocity.y << "\n";
+			std::cout << "mag :" << velocity.Magnitude() << "\n";
+			if (velocity.Magnitude() > 1 || velocity.Magnitude() == 1)
+			{
+			std::cout << "";
+
+			}
+	
+		}
+		Owner->ObjectTransform.AddVelocity(velocity.Normalize() * velocityMultiplier * BombermanTime::DeltaTime);
+
+
 		//velocity.x /= 1 + friction.x * BombermanTime::DeltaTime;
 		//velocity.y /= 1 + friction.y * BombermanTime::DeltaTime;
 	}

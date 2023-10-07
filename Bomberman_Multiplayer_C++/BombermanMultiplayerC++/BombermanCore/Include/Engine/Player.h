@@ -38,8 +38,8 @@ namespace Bomberman
         const Uint8* GetInput();
         void Update() override;
         void InstantiateEgg(const Vector2 pos) override ;
-        std::shared_ptr<SerialData> GetPacketTransform() const;
-        std::shared_ptr<SerialData> GetPacketMovement() const;
+        std::shared_ptr<NetworkPacket> GetPacketTransform() const override;
+        std::shared_ptr<NetworkPacket> GetPacketMovement() const;
 
         
     };

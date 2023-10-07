@@ -8,7 +8,7 @@
 #include <map>
 #include <WinSock2.h>
 #include <unordered_set>
-
+#include "NetworkPacket.h"
 //#include <functional>
 #include "Delegates.h"
 
@@ -19,7 +19,7 @@ namespace Bomberman
 	
 class Server
 {
-	typedef int(*NetworkCommandGenericServer)(sockaddr_in,const unsigned char*);
+	typedef int(*NetworkCommandGenericServer)(sockaddr_in,NetworkPacket);
 
 
 private:
@@ -34,8 +34,10 @@ public:
 	static sockaddr_in IncomingClient,ServerAddress;
 	static WSADATA wsa;
 	static std::vector<unsigned char> message;
-	//static std::vector<OnlinePlayer*> OnlinePlayers;
+	
 	static std::map<unsigned int, std::shared_ptr<ActorData>> ObjectsToSync;
+	static std::map<ActorData*,unsigned int> ActorToID;
+
 	static std::map<unsigned int, std::shared_ptr<PlayerData>> knownClients;
 	static std::unordered_set<unsigned int> blacklistedClients;
 	
@@ -48,7 +50,7 @@ public:
 	static int SetMap(int MapIndex);
 	static int LoadMap(int MapIndex);
 	static void Run();
-	static void ProcessMessage(sockaddr_in client,const std::vector<unsigned char> msg);
+	static void ProcessMessage(sockaddr_in client,const std::shared_ptr<std::vector<NetworkPacket>> msg,int length);
 
 	static void CheckClientStatus();
 	static bool CheckClientPassword	(sockaddr_in client);
@@ -59,7 +61,7 @@ public:
 	static void SendToClient		(sockaddr_in clientDestination);
 
 	static void SendWorldStatus(sockaddr_in client);
-	static int ReceiveInput(sockaddr_in Client, const unsigned char* msg);
+	static int ReceiveInput(sockaddr_in Client, const NetworkPacket msg);
 };
 
 
