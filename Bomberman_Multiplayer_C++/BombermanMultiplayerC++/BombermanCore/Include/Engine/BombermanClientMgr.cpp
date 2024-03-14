@@ -111,7 +111,7 @@ namespace Bomberman
 		
 		ServerConnectionEstablished.Broadcast(id, MapIndex,position,dimen);
 		
-		TransformsToSync[id] = &Player::GetLocalPlayer()->transform;
+		//TransformsToSync[id] = &Player::GetLocalPlayer()->transform;
 
 		//std::cout <<" MY PLAYER - ID = "<< id << " \n ";
 		SetSocketBlockingEnabled((int)Server_socket, false);
@@ -313,7 +313,7 @@ namespace Bomberman
 		{
 			if (printX != 64 || printY != 64)
 			{
-				//std::cout << "ao";
+				std::cout << "ao";
 			}
 			Player::GetLocalPlayer()->transform.SetPosition({ printX, printY });
 			return 4;

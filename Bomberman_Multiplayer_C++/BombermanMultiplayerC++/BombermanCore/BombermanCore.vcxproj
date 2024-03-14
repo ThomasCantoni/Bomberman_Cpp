@@ -74,6 +74,14 @@
     <Text Include="Include\Maps\map1.txt" />
     <Text Include="Include\Net\ProtocolDefiner.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="SDL2-2.26.0\lib\x64\SDL2.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="SDL2-2.26.0\lib\x64\SDL2.lib" />
+    <Library Include="SDL2-2.26.0\lib\x64\SDL2main.lib" />
+    <Library Include="SDL2-2.26.0\lib\x64\SDL2test.lib" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -176,14 +184,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\SDL2_image-2.6.3\include;C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\SDL2-2.26.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)SDL2-2.26.0\lib\x64;$(ProjectDir)SDL2-2.26.0\include;$(ProjectDir)SDL2_image-2.6.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalModuleDependencies>%(AdditionalModuleDependencies)</AdditionalModuleDependencies>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\SDL2_image-2.6.3\lib\x64;C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\SDL2-2.26.0\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\thoma\OneDrive\Desktop\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\SDL2-2.26.0\lib\x64;
+	  C:\Users\thoma\OneDrive\Desktop\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\SDL2_image-2.6.3\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;WS2_32.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <ProjectReference>

@@ -13,5 +13,4 @@ namespace Bomberman
 		static BoxCollider* CreateBoxFor(ActorData* owner, float widthMultiplier, float heightMultiplier);
 
 	};
-
 }

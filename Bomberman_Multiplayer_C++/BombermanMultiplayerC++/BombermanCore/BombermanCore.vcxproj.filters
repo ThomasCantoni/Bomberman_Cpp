@@ -197,4 +197,12 @@
     <Text Include="Include\Net\ProtocolDefiner.txt" />
     <Text Include="Include\Maps\map0.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="SDL2-2.26.0\lib\x64\SDL2.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="SDL2-2.26.0\lib\x64\SDL2.lib" />
+    <Library Include="SDL2-2.26.0\lib\x64\SDL2main.lib" />
+    <Library Include="SDL2-2.26.0\lib\x64\SDL2test.lib" />
+  </ItemGroup>
 </Project>

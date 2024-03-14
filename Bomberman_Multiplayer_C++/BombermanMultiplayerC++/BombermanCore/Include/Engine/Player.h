@@ -10,6 +10,8 @@
 
 namespace Bomberman
 {
+   #define DEFAULT_POS Vector2(64,64)
+   #define DEFAULT_DIM Vector2(64,64)
 
     class Player : public Actor, public IAttack
     {

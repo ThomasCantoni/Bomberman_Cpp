@@ -119,12 +119,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\SDL2_image-2.6.3\include;C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\SDL2-2.26.0\include;C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\Include\Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\thoma\OneDrive\Desktop\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\Include\Engine;C:\Users\thoma\OneDrive\Desktop\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\SDL2_image-2.6.3\include;C:\Users\thoma\OneDrive\Desktop\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\SDL2-2.26.0\include;C:\Users\thoma\OneDrive\Desktop\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\utente\Desktop\Hard disk vecchio\scola\Anno 3\Softwares\C++\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\thoma\OneDrive\Desktop\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>BombermanCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

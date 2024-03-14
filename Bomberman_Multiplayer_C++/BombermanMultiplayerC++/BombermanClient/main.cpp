@@ -60,8 +60,9 @@ int main(int argc, char** argv)
     BombermanClientMgr::ServerConnectionEstablished.AddLambda([](int localPlayerID, int mapID, Vector2 pos, Vector2 dim)
         {
             player->ID = localPlayerID;
-            player->transform.SetPosition(pos);
             player->transform.SetDimensions(dim);
+           // std::cout << dim.x << " " << dim.y << "\n";
+           player->transform.SetPosition(pos);
             MapManager::LoadMap(mapID);
 
         });
@@ -71,7 +72,7 @@ int main(int argc, char** argv)
 
     int  running = 1;
 
-       //std::thread drawerThread(&SDL_Object::EndFrameUpdate,SDL_Obj);
+      // std::thread drawerThread(&SDL_Object::EndFrameUpdate,SDL_Obj);
     while (running)
     {
 
@@ -94,7 +95,7 @@ int main(int argc, char** argv)
 
         SDL_Obj->EndFrameUpdate();
         
-       // drawerThread.join();
+       //drawerThread.join();
     }
     
     //closesocket(Server_socket);

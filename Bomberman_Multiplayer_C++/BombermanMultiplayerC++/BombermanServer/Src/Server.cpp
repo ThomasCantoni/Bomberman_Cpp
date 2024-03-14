@@ -4,6 +4,7 @@
 #include <fstream>
 #include <time.h>
 #include "LocalMap.h"
+#include "Player.h"
 
 
 //#include "NETMap.h"
@@ -348,8 +349,10 @@ namespace Bomberman
 	void Server::AcceptClient(sockaddr_in s)
 	{
 		float x, y, w, h; // default player position and dimension
-		x = 64;
-		y = 64;
+		//Vector2 pos = DEFAULT_POS;
+
+		//Vector2 dim = DEFAULT_DIM;
+		
 		w = 64;
 		h = 64;
 		unsigned int key = static_cast<unsigned int>(s.sin_addr.S_un.S_addr);
@@ -358,10 +361,10 @@ namespace Bomberman
 		std::shared_ptr<std::vector<unsigned char>> Welcome = std::make_shared<std::vector<unsigned char>>(4*6);
 		ByteConverter::BytesAppend(Welcome, 0, ByteConverter::IntToBytes(ID),4);
 		ByteConverter::BytesAppend(Welcome, 4, ByteConverter::IntToBytes(currentMap),4);
-		ByteConverter::BytesAppend(Welcome, 8, ByteConverter::FloatToBytes(64),4);
-		ByteConverter::BytesAppend(Welcome, 12,ByteConverter::FloatToBytes(64),4);
-		ByteConverter::BytesAppend(Welcome, 16,ByteConverter::FloatToBytes(64),4);
-		ByteConverter::BytesAppend(Welcome, 20,ByteConverter::FloatToBytes(64),4);
+		ByteConverter::BytesAppend(Welcome, 8, ByteConverter::FloatToBytes(DEFAULT_POS.x),4);
+		ByteConverter::BytesAppend(Welcome, 12,ByteConverter::FloatToBytes(DEFAULT_POS.y),4);
+		ByteConverter::BytesAppend(Welcome, 16,ByteConverter::FloatToBytes(DEFAULT_DIM.x),4);
+		ByteConverter::BytesAppend(Welcome, 20,ByteConverter::FloatToBytes(DEFAULT_DIM.y),4);
 
 		
 		// TODO: ID + MAP_ID + COLLIDER
@@ -382,7 +385,7 @@ namespace Bomberman
 	{
 		auto key = static_cast<unsigned int>(s.sin_addr.S_un.S_addr);
 
-		return  blacklistedClients.contains(key);
+		return  blacklistedClients.find(key)._Ptr != nullptr;
 	}
 	void Server::SendWorldStatus(sockaddr_in client)
 	{

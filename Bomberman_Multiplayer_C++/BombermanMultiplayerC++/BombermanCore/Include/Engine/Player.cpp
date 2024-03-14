@@ -3,10 +3,11 @@
 #include "Player.h"
 #include <memory>
 #define TIMER_DROP_EGGBOMB  6.0f
+
+
 namespace Bomberman
 {
 	Player* Player::LocalPlayer;
-
 	Player::Player(const SDL_Object* SDL_O) : Actor("paperella.png")
 	{
 
@@ -16,8 +17,9 @@ namespace Bomberman
 		score = 0;
 		speed = 200;
 
-		transform.SetDimensions(64, 64);
-		transform.SetPosition(Vector2(32,32));
+		
+		transform.SetDimensions(Vector2(64,64));
+		transform.SetPosition(Vector2(200, 200));
 
 		LocalPlayer = this;
 
@@ -54,18 +56,21 @@ namespace Bomberman
 	}
 	void Player::Update()
 	{
+		
+
 		Actor::Update();
 		GetInput();
+
 		TimerDropEggbomb -= BombermanTime::DeltaTime;
 
 		
 		velocity.x = static_cast<float>(keys[SDL_SCANCODE_RIGHT] - keys[SDL_SCANCODE_LEFT]);
 		velocity.y = static_cast<float>(keys[SDL_SCANCODE_DOWN] - keys[SDL_SCANCODE_UP]);
 		velocity = velocity.Normalize();
-		std::cout << "velocity.x :" << velocity.x << "\n";
-		std::cout << "velocity.y :" << velocity.y << "\n";
+		std::cout << "x :" << transform.GetPosition().x << "\n";
+		std::cout << "y :" << transform.GetPosition().y << "\n";
 
-		//transform.AddVelocity(velocity*BombermanTime::DeltaTime);;
+		transform.AddVelocity(velocity*BombermanTime::DeltaTime*speed);;
 
 		
 	}
@@ -336,6 +341,8 @@ namespace Bomberman
 		return net;
 		
 	}
+
+	
 }
 
 
