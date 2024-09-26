@@ -3,11 +3,11 @@
 namespace Bomberman
 {
 
-	Eggsplosion::Eggsplosion() : Actor("eggsplosion.png")
+	Eggsplosion::Eggsplosion() : ClientActor("eggsplosion.png")
 	{
 
 	}
-	Eggsplosion::Eggsplosion(const Vector2 position,const float timer) : Actor("eggsplosion.png")
+	Eggsplosion::Eggsplosion(const Vector2 position,const float timer) : ClientActor("eggsplosion.png")
 	{
 		transform.SetDimensions(150, 150);
 		transform.SetPosition(position);
@@ -16,7 +16,7 @@ namespace Bomberman
 	}
 	void Eggsplosion::Update()
 	{
-		Actor::Update();
+		ClientActor::Update();
 		kill_time -= BombermanTime::DeltaTime;
 		if (kill_time <= 0)
 		{

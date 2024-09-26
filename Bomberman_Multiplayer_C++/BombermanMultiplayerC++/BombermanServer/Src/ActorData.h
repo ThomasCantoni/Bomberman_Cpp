@@ -13,7 +13,7 @@ class ActorData
 {
 public:
 	Transform ObjectTransform;
-	NETRigidBody* rigidbody;
+	std::shared_ptr<NETRigidBody> rigidbody;
 	ActorData() = default;
 
 	ActorData(float x,float y,float w,float h);

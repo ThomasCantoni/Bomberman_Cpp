@@ -3,22 +3,22 @@
 namespace Bomberman 
 {
 
-	std::list< NETRigidBody*>::iterator  NETPhysicsMgr::iterator;
-	std::list< NETRigidBody*>			 NETPhysicsMgr::items;
-	std::list< NETRigidBody*>			 NETPhysicsMgr::itemsToRemove;
-	NETCollision* NETPhysicsMgr::collisionInfo;
+	std::list< std::shared_ptr<NETRigidBody> >::iterator  NETPhysicsMgr::iterator;
+	std::list< std::shared_ptr<NETRigidBody> >			 NETPhysicsMgr::items;
+	std::list< std::shared_ptr<NETRigidBody> >			 NETPhysicsMgr::itemsToRemove;
+	NETCollision* NETPhysicsMgr::collisionInfo = new NETCollision();
 
 
-	void NETPhysicsMgr::AddItem(NETRigidBody* to_add)
+	void NETPhysicsMgr::AddItem(std::shared_ptr<NETRigidBody>  to_add)
 	{
 		
 		items.push_front(to_add);
 	}
-	void NETPhysicsMgr::AddItem(std::unique_ptr<NETRigidBody> to_add)
+	void NETPhysicsMgr::AddItem(NETRigidBody* to_add)
 	{
-		items.push_front(to_add.get());
+		//items.push_front(to_add.get());
 	}
-	void NETPhysicsMgr::RemoveItem(NETRigidBody* to_rem)
+	void NETPhysicsMgr::RemoveItem(std::shared_ptr<NETRigidBody>  to_rem)
 	{
 		if (RemoveItemContains(to_rem) == false)
 			itemsToRemove.push_front(to_rem);
@@ -41,9 +41,9 @@ namespace Bomberman
 
 		for (auto i = items.begin(); i != items.end(); i++)
 		{
-			if ((*i) == to_rem)
+			if ((*i).get() == to_rem)
 			{
-				delete(*i);
+				
 				iterator = items.erase(i);
 				return;
 			}
@@ -69,21 +69,18 @@ namespace Bomberman
 		{
 
 			items.remove((*i));
-			delete* i;
+			//delete* i;
 
 			//free(*i);
 		}
 		itemsToRemove.clear();
 	}
-	bool NETPhysicsMgr::ItemContains(NETRigidBody* toCheck)
+	bool NETPhysicsMgr::ItemContains(std::shared_ptr<NETRigidBody>  toCheck)
 	{
 		return std::find(items.begin(), items.end(), toCheck) != items.end();
 	}
-	bool NETPhysicsMgr::ItemContains(std::unique_ptr<NETRigidBody> toCheck)
-	{
-		return ItemContains(toCheck.get());
-	}
-	bool NETPhysicsMgr::RemoveItemContains(NETRigidBody* toCheck)
+	
+	bool NETPhysicsMgr::RemoveItemContains(std::shared_ptr<NETRigidBody>  toCheck)
 	{
 		return std::find(itemsToRemove.begin(), itemsToRemove.end(), toCheck) != itemsToRemove.end();
 		for (auto i = items.begin(); i != items.end(); i++)
@@ -94,16 +91,13 @@ namespace Bomberman
 
 		return false;
 	}
-	bool NETPhysicsMgr::RemoveItemContains(std::unique_ptr<NETRigidBody> toCheck)
-	{
-		return RemoveItemContains(toCheck.get());
-	}
+	
 	
 	void NETPhysicsMgr::CheckCollisions()
 	{
 		int currentItemIndex = 0;
 		int itemSize = items.size();
-		//collisionInfo = new Collision();
+		//collisionInfo =  NETCollision();
 		for (auto i = items.begin(); i != items.end(); i++)
 		{
 			currentItemIndex++;
@@ -142,6 +136,6 @@ namespace Bomberman
 				}
 			}
 		}
-		delete collisionInfo;
+		//delete collisionInfo;
 	}
 }

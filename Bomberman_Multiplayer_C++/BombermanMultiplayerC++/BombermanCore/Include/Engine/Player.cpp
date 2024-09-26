@@ -8,7 +8,7 @@
 namespace Bomberman
 {
 	Player* Player::LocalPlayer;
-	Player::Player(const SDL_Object* SDL_O) : Actor("paperella.png")
+	Player::Player(const SDL_Object* SDL_O) : ClientActor("paperella.png")
 	{
 
 
@@ -58,7 +58,7 @@ namespace Bomberman
 	{
 		
 
-		Actor::Update();
+		ClientActor::Update();
 		GetInput();
 
 		TimerDropEggbomb -= BombermanTime::DeltaTime;

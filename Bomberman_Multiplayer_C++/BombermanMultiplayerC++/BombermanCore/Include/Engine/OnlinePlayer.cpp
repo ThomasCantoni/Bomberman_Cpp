@@ -3,7 +3,7 @@
 #include <iostream>
 namespace Bomberman
 {
-	OnlinePlayer::OnlinePlayer(const int id) : Actor( "materials\\paperella.png")
+	OnlinePlayer::OnlinePlayer(const int id) : ClientActor( "materials\\paperella.png")
 	{
 		
 		
@@ -17,7 +17,7 @@ namespace Bomberman
 
 	void OnlinePlayer::Update() 
 	{ 
-		Actor::Update();
+		ClientActor::Update();
 		//std::cout << " POSITIONS : " << old_position.x << " " << old_position.y << std::endl;
 
 		lerp_accumulator += BombermanTime::DeltaTime *  (1.f / NETWORK_PERIOD);

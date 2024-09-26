@@ -21,13 +21,14 @@ public:
 		return halfHeight * 2;
 	}
 
-	BoxCollider(NETRigidBody* owner, float w, float h);
+	BoxCollider(std::shared_ptr<NETRigidBody>  owner, float w, float h);
 	bool Contains(Vector2 point) override;
 
 
-	bool Collides(BoxCollider* other, NETCollision* collisionInfo) override;
-	bool Collides(NETCollider* other, NETCollision *collisionInfo) override;
-
+	bool Collides(std::shared_ptr<NETCollider> other, NETCollision* collisionInfo) const override;
+	bool Collides(std::shared_ptr<BoxCollider> other, NETCollision *collisionInfo) const override;
+	bool Collides(const NETCollider& other, NETCollision* collisionInfo) const override;
+	bool Collides(const BoxCollider& other, NETCollision* collisionInfo) const override;
 
 	//{
 	//	return collider.Collides(this, ref collisionInfo);

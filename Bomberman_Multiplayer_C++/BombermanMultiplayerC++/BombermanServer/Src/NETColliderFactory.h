@@ -5,12 +5,12 @@
 namespace Bomberman
 {
 	class BoxCollider;
-	class ColliderFactory
+	class NETColliderFactory
 	{
 	public:
-		static BoxCollider* CreateBoxFor(ActorData* owner);
+		static std::shared_ptr<BoxCollider> CreateBoxFor(ActorData* owner) ;
 
-		static BoxCollider* CreateBoxFor(ActorData* owner, float widthMultiplier, float heightMultiplier);
+		static  std::shared_ptr<BoxCollider> CreateBoxFor(ActorData* owner, float widthMultiplier, float heightMultiplier);
 
 	};
 }
