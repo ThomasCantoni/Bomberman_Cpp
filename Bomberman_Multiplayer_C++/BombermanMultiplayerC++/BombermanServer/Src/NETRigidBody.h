@@ -34,7 +34,11 @@ namespace Bomberman {
 		void SetStatic(bool desiredValue);
 		
 		Vector2 GetPosition();
+<<<<<<< HEAD
 		NETRigidBody(ServerActor* owner);
+=======
+		NETRigidBody(ActorData* owner);
+>>>>>>> main
 		//NETRigidBody();
 
 		void Update();

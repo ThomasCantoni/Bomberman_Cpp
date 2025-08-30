@@ -1,5 +1,6 @@
 #include "NETCollider.h"
 #include "NETRigidBody.h"
+
 namespace Bomberman
 {
 	//class RigidBody;
@@ -10,6 +11,8 @@ namespace Bomberman
 	}
 	Vector2 NETCollider::GetPosition() const
 	{
+		
+		
 		return rigidbody->Owner->ObjectTransform.GetPosition();
 		
 	}

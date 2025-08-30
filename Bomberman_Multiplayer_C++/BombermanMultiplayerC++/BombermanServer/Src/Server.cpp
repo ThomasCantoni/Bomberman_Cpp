@@ -384,11 +384,12 @@ namespace Bomberman
 	bool Server::IsClientBlacklisted(sockaddr_in s)
 	{
 		auto key = static_cast<unsigned int>(s.sin_addr.S_un.S_addr);
-
-		return  blacklistedClients.find(key)._Ptr != nullptr;
+		return blacklistedClients.contains(key);
+		//return  blacklistedClients.find(key)._Ptr != nullptr;
 	}
 	void Server::SendWorldStatus(sockaddr_in client)
 	{
+		
 		//clear msg
 		message.assign(message.size(), 0);
 		
@@ -401,6 +402,7 @@ namespace Bomberman
 			{
 				std::cout << "Stop";
 			}*/
+			
 			std::shared_ptr<SerialData> transform = (*i).second->GetPacketTransform();
 			
 			//set command 
