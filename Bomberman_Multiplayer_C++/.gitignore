@@ -16,7 +16,7 @@
 *.env
 *.tlog
 *.log
-*\*.tlog
+*/*.tlog
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
