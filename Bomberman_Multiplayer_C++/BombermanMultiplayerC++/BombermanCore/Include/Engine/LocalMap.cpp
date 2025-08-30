@@ -4,25 +4,25 @@
 
 namespace Bomberman
 {
-	
-	Tile::Tile(const float x, const float y, const float w, const float h,const bool isStatic ) : Actor()
+	//std::shared_ptr<RigidBody> rigidbody;
+	Tile::Tile(const float x, const float y, const float w, const float h,const bool isStatic ) : ClientActor()
 	{
 		
 		transform.SetDimensions(Vector2(w, h));
 		transform.SetPosition(Vector2(x, y));
 
 		Tile::isStatic = isStatic;
-		//rigidbody = new RigidBody(this);
-		//rigidbody->SetStatic(isStatic);
-		//rigidbody->friction = Vector2::One() * 2.f;
-		//rigidbody->Collider = (Collider*)ColliderFactory::CreateBoxFor(this);
-		//rigidbody->AddCollisionType(RigidBodyType::Player);
-		//rigidbody->AddCollisionType(RigidBodyType::Wall);
+		/*rigidbody = std::make_shared<RigidBody>(this);
+		rigidbody->SetStatic(isStatic);
+		rigidbody->friction = Vector2::One() * 2.f;
+		rigidbody->Collider = (Collider*)ColliderFactory::CreateBoxFor(this);
+		rigidbody->AddCollisionType(RigidBodyType::Player);
+		rigidbody->AddCollisionType(RigidBodyType::Wall);*/
 		
 		//rigidbody->Type = RigidBodyType::Wall;
 	}
 
-	Tile::Tile(SDL_Rect rect,const bool isStatic) : Actor()
+	Tile::Tile(SDL_Rect rect,const bool isStatic) : ClientActor()
 	{
 
 		transform.screenTransform = rect;

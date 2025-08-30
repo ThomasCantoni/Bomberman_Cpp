@@ -4,7 +4,7 @@
 
 namespace Bomberman
 {
-	class Eggbomb : public Actor
+	class Eggbomb : public ClientActor
 	{
 	public: 
 	

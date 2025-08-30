@@ -6,14 +6,14 @@
 #include <functional>
 #include "OnlinePlayer.h"
 #include <array>
+   #define DEFAULT_POS Vector2(64,64)
+   #define DEFAULT_DIM Vector2(64,64)
 
 
 namespace Bomberman
 {
-   #define DEFAULT_POS Vector2(64,64)
-   #define DEFAULT_DIM Vector2(64,64)
 
-    class Player : public Actor, public IAttack
+    class Player : public ClientActor, public IAttack
     {
     private:
         static Player* LocalPlayer;

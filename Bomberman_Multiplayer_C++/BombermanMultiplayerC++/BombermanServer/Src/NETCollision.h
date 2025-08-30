@@ -8,7 +8,7 @@ namespace Bomberman
 	struct NETCollision
 	{
 	public:
-		ActorData* Collider;
+		ServerActor* Collider;
 		Vector2 Delta;
 		NETCollisionType Type;
 	};

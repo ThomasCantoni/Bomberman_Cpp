@@ -4,13 +4,13 @@
 
 namespace Bomberman
 {
-	Actor::Actor()
+	ClientActor::ClientActor()
 	{
 		IsActive = true;
 		transform.pivot.x = 0.5f;
 		transform.pivot.y = 0.5f;
 	}
-	Actor::Actor(const char* textureName)
+	ClientActor::ClientActor(const char* textureName)
 	{
 		IsActive = true;
 		TextureStruct* t = TextureFactory::GetTexture(textureName);
@@ -26,24 +26,24 @@ namespace Bomberman
 		
 	}
 	
-	Actor::~Actor()
+	ClientActor::~ClientActor()
 	{
 		IsActive = false;
 		UpdateMgr::RemoveItem(this);
 		
 	}
-	Actor::Actor(const Actor& other)
+	ClientActor::ClientActor(const ClientActor& other)
 	{
 
 
 	}
-	void Actor::Update()
+	void ClientActor::Update()
 	{
 		SDL_RenderCopy(SDL_Object::renderer, texture, NULL, &transform.screenTransform);;
 	}
 	
 
-	std::shared_ptr<NetworkPacket> Actor::GetPacketTransform() const
+	std::shared_ptr<NetworkPacket> ClientActor::GetPacketTransform() const
 	{
 		auto net = std::make_shared<NetworkPacket>(NETCOMMANDType::Update,ID, transform.Serialize());
 		return net;

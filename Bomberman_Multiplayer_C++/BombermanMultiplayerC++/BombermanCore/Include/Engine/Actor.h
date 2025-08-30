@@ -19,7 +19,7 @@ namespace Bomberman
 	class RigidBody;
 	struct Collision;
 	struct NetworkPacket;
-	class Actor : public IUpdatable
+	class ClientActor : public IUpdatable
 	{
 
 	public:
@@ -30,11 +30,11 @@ namespace Bomberman
 		bool IsActive = true;
 		
 
-		Actor();
-		virtual ~Actor() override;
-		Actor(const Actor& other);
-		Actor& operator=(const Actor& other) = default;
-		Actor(const char* texture_path);
+		ClientActor();
+		virtual ~ClientActor() override;
+		ClientActor(const ClientActor& other);
+		ClientActor& operator=(const ClientActor& other) = default;
+		ClientActor(const char* texture_path);
 
 		virtual std::shared_ptr<NetworkPacket> GetPacketTransform() const;
 		void Update() override;

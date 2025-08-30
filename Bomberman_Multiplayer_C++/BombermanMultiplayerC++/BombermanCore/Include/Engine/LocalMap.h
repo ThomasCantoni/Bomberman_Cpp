@@ -5,15 +5,15 @@
 #include "Player.h"
 #include <sstream>
 #include <fstream>
-
+//#include <memory.h>
 namespace Bomberman
 {
-	class Tile : public Actor
+	class Tile : public ClientActor
 	{
 	private:
 		bool isStatic = false;
 	public:
-		
+		std::shared_ptr<RigidBody> rigidbody;
 		Tile(const float x, const float y, const float w, const float h,const bool IsStatic=true);
 		Tile(SDL_Rect origin,const bool isStatic = true);
 		~Tile() = default;

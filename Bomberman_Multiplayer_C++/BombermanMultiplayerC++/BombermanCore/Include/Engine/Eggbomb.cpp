@@ -4,7 +4,7 @@ namespace Bomberman
 {
 	
 	
-	Eggbomb::Eggbomb(const float x,const float y) : Actor("EGGOLD.png")
+	Eggbomb::Eggbomb(const float x,const float y) : ClientActor("EGGOLD.png")
 	{
 		timer = 5;
 		transform.SetDimensions({ 40, 48 });
@@ -27,7 +27,7 @@ namespace Bomberman
 	}
 	void Eggbomb::Update()
 	{
-		Actor::Update();
+		ClientActor::Update();
 		timer -= BombermanTime::DeltaTime;
 		if (timer <= 0)
 		{

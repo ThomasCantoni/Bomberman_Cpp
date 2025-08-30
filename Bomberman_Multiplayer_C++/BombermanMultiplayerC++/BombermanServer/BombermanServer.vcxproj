@@ -120,11 +120,12 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\thoma\OneDrive\Desktop\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\Include\Engine;C:\Users\thoma\OneDrive\Desktop\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\SDL2_image-2.6.3\include;C:\Users\thoma\OneDrive\Desktop\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\SDL2-2.26.0\include;C:\Users\thoma\OneDrive\Desktop\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\thoma\OneDrive\Desktop\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>BombermanCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -146,7 +147,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ServerMap.cpp" />
-    <ClCompile Include="Src\ActorData.cpp" />
+    <ClCompile Include="Src\ServerTile.cpp" />
+    <ClCompile Include="Src\ServerActor.cpp" />
     <ClCompile Include="Src\BoxCollider.cpp" />
     <ClCompile Include="Src\NETColliderFactory.cpp" />
     <ClCompile Include="Src\NETCollider.cpp" />
@@ -158,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ServerMap.h" />
+    <ClInclude Include="Src\ServerTile.h" />
     <ClInclude Include="Src\ActorData.h" />
     <ClInclude Include="Src\BoxCollider.h" />
     <ClInclude Include="Src\NETCollisionType.h" />

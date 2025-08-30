@@ -5,7 +5,7 @@
 
 namespace Bomberman
 {
-	class OnlinePlayer : public Actor
+	class OnlinePlayer : public ClientActor
 	{
 	public:
 		Vector2 old_position, latest_position;

@@ -2,7 +2,7 @@
 #include "Actor.h"
 namespace Bomberman
 {
-	class Eggsplosion : public Actor
+	class Eggsplosion : public ClientActor
 
 	{
 	public:

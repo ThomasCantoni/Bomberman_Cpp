@@ -5,23 +5,24 @@
 
 
 namespace Bomberman {
-	NETRigidBody::NETRigidBody()
+	/*NETRigidBody::NETRigidBody()
 	{
 		velocity = Vector2::Zero();
 		velocityMultiplier = Vector2::One();
 		friction = Vector2::Zero();
-	}
-	NETRigidBody::NETRigidBody(ActorData* owner) : Owner(owner)
+	}*/
+	NETRigidBody::NETRigidBody(ServerActor* owner) : Owner(owner)
 	{
-
+		
 		NETPhysicsMgr::AddItem(this);
 		velocity = Vector2::Zero();
 		velocityMultiplier = Vector2::One();
 		friction = Vector2::Zero();
+		isActive = true;
 	}
 	bool NETRigidBody::IsActive()
 	{
-		return false;
+		return isActive;
 	}
 	bool NETRigidBody::IsAwake()
 	{
@@ -53,20 +54,20 @@ namespace Bomberman {
 			return;
 		}
 		
-		if (Owner->GetID() == 0x1c)
+		Owner->ObjectTransform.AddVelocity(velocity.Normalize() * velocityMultiplier * BombermanTime::DeltaTime);
+		if (Owner->GetID() == 0x1c && velocity.Magnitude() > 0)
 		{
-			system("cls");
-			std::cout << "velocity.x :" << velocity.x << "\n";
-			std::cout << "velocity.y :" << velocity.y << "\n";
-			std::cout << "mag :" << velocity.Magnitude() << "\n";
+			/*system("cls");
+			std::cout << "pos.x :" << GetPosition().x << "\n";
+			std::cout << "pos.y :" << GetPosition().y << "\n";
+			std::cout << "vel :" << velocity.Magnitude() << "\n";
 			if (velocity.Magnitude() > 1 || velocity.Magnitude() == 1)
 			{
 			std::cout << "";
 
 			}
-	
+			*/
 		}
-		Owner->ObjectTransform.AddVelocity(velocity.Normalize() * velocityMultiplier * BombermanTime::DeltaTime);
 
 
 		//velocity.x /= 1 + friction.x * BombermanTime::DeltaTime;
@@ -84,13 +85,13 @@ namespace Bomberman {
 	{
 		return ((unsigned int)type & collisionMask) != 0;
 	}
-	bool NETRigidBody::Collides(NETRigidBody* other, NETCollision* collisionInfo)
+	bool NETRigidBody::Collides(std::shared_ptr<NETRigidBody> other, NETCollision* collisionInfo)
 	{
 
 		return Collider->Collides(other->Collider, collisionInfo);
 	}
 	NETRigidBody::~NETRigidBody()
 	{
-		NETPhysicsMgr::RemoveItem(this);
+		NETPhysicsMgr::RemoveItem(shared_from_this());
 	}
 }

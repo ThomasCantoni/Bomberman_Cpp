@@ -35,8 +35,8 @@ public:
 	static WSADATA wsa;
 	static std::vector<unsigned char> message;
 	
-	static std::map<unsigned int, std::shared_ptr<ActorData>> ObjectsToSync;
-	static std::map<ActorData*,unsigned int> ActorToID;
+	static std::map<unsigned int, std::shared_ptr<ServerActor>> ObjectsToSync;
+	static std::map<ServerActor*,unsigned int> ActorToID;
 
 	static std::map<unsigned int, std::shared_ptr<PlayerData>> knownClients;
 	static std::unordered_set<unsigned int> blacklistedClients;
