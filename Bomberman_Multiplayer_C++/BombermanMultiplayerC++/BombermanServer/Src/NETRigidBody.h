@@ -9,7 +9,7 @@ namespace Bomberman {
 	class NETCollider;
 	class NETCollision;
 	class NETPhysicsMgr;
-	class ActorData;
+	class ServerActor;
 
 	class NETRigidBody : public std::enable_shared_from_this<NETRigidBody>
 	{
@@ -20,7 +20,7 @@ namespace Bomberman {
 		Vector2 velocity;
 		Vector2 velocityMultiplier;
 		Vector2 friction;
-		ActorData* Owner;
+		ServerActor* Owner;
 		bool IsGravityAffected;
 		bool IsStatic = false;
 		bool IsCollisionsAffected = true;
@@ -34,7 +34,11 @@ namespace Bomberman {
 		void SetStatic(bool desiredValue);
 		
 		Vector2 GetPosition();
+<<<<<<< HEAD
+		NETRigidBody(ServerActor* owner);
+=======
 		NETRigidBody(ActorData* owner);
+>>>>>>> main
 		//NETRigidBody();
 
 		void Update();

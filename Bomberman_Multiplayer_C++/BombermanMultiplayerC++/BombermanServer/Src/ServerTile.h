@@ -3,7 +3,11 @@
 namespace Bomberman
 {
 
+<<<<<<< HEAD
+	class ServerTile : public ServerActor
+=======
 	class ServerTile : public ActorData
+>>>>>>> main
 	{
 	private:
 		bool isStatic = false;

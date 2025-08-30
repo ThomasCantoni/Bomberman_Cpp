@@ -2,10 +2,16 @@
 //#include "RigidbodyType.h"
 #include "NETRigidBody.h"
 #include "NETColliderFactory.h"
+<<<<<<< HEAD
+namespace Bomberman
+{
+	ServerTile::ServerTile(const float x, const float y, const float w, const float h, const bool isStatic) : ServerActor(x,y,w,h)
+=======
 #include "ActorData.h"
 namespace Bomberman
 {
 	ServerTile::ServerTile(const float x, const float y, const float w, const float h, const bool isStatic) : ActorData(x,y,w,h)
+>>>>>>> main
 	{
 
 		//ObjectTransform.SetDimensions(Vector2(w, h));

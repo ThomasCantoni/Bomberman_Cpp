@@ -9,7 +9,11 @@ namespace Bomberman
 {
 	class BoxCollider;
 	class NETRigidBody;
+<<<<<<< HEAD
+	class ClientActor;
+=======
 	class ActorData;
+>>>>>>> main
 
 
 	

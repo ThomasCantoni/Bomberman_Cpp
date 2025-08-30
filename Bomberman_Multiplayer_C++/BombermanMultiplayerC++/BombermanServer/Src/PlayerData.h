@@ -8,7 +8,7 @@ namespace Bomberman
 #define DEFAULT_PLAYER_SPEED_VEC {100,100}
 
 
-	class PlayerData : public ActorData
+	class PlayerData : public ServerActor
 	{
 	public :
 		time_t LastPacketDate;

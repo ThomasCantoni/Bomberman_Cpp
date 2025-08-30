@@ -11,7 +11,11 @@ namespace Bomberman {
 		velocityMultiplier = Vector2::One();
 		friction = Vector2::Zero();
 	}*/
+<<<<<<< HEAD
+	NETRigidBody::NETRigidBody(ServerActor* owner) : Owner(owner)
+=======
 	NETRigidBody::NETRigidBody(ActorData* owner) : Owner(owner)
+>>>>>>> main
 	{
 		
 		NETPhysicsMgr::AddItem(this);
