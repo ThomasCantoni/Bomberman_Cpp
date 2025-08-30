@@ -1,1 +1,48 @@
-﻿
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (BombermanMultiplayerC++.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  main.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75):
+      the template instantiation context (the oldest one first) is
+          C:\Users\thoma\Desktop\Projects\Bomb project\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\BombermanCore\Include\Engine\NetworkPacket.h(26,19):
+          see reference to function template instantiation 'std::shared_ptr<Bomberman::SerialData> std::make_shared<Bomberman::SerialData,unsigned __int64>(unsigned __int64 &&)' being compiled
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(2906,46):
+          see reference to function template instantiation 'std::_Ref_count_obj2<Bomberman::SerialData>::_Ref_count_obj2<_Ty>(_Ty &&)' being compiled
+          with
+          [
+              _Ty=unsigned __int64
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(2095,18):
+          see reference to function template instantiation 'void std::_Construct_in_place<_Ty,unsigned __int64>(_Ty &,unsigned __int64 &&) noexcept(false)' being compiled
+          with
+          [
+              _Ty=Bomberman::SerialData
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(399,14):
+          see reference to function template instantiation '_Ty *std::construct_at<_Ty,unsigned __int64>(_Ty *const ,unsigned __int64 &&) noexcept(<expr>)' being compiled
+          with
+          [
+              _Ty=Bomberman::SerialData
+          ]
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(403,82): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90):
+      the template instantiation context (the oldest one first) is
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(2095,18):
+          see reference to function template instantiation 'void std::_Construct_in_place<_Ty,unsigned __int64>(_Ty &,unsigned __int64 &&) noexcept(false)' being compiled
+          with
+          [
+              _Ty=Bomberman::SerialData
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(399,14):
+          see reference to function template instantiation '_Ty *std::construct_at<_Ty,unsigned __int64>(_Ty *const ,unsigned __int64 &&) noexcept(false)' being compiled
+          with
+          [
+              _Ty=Bomberman::SerialData
+          ]
+  
+  BombermanClient.vcxproj -> C:\Users\thoma\Desktop\Projects\Bomb project\BombermanRepo\Bomberman_Multiplayer_C++\BombermanMultiplayerC++\x64\Debug\BombermanClient.exe

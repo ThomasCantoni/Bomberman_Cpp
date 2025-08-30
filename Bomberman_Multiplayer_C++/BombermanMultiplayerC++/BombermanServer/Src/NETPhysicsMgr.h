@@ -1,7 +1,7 @@
 #pragma once
 #include "NETRigidBody.h"
 #include <list>
-#include "Vector2.h"
+#include "Engine/Vector2.h"
 #include "NETCollider.h"
 #include "NETCollision.h"
 namespace Bomberman {

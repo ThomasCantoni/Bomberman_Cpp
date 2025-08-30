@@ -1,5 +1,5 @@
 #pragma once
-#include "NetworkBase.h"
+#include "Engine/NetworkBase.h"
 
 #include "PlayerData.h"
 #include <stdio.h>
@@ -8,16 +8,16 @@
 #include <map>
 #include <WinSock2.h>
 #include <unordered_set>
-#include "NetworkPacket.h"
+#include "Engine/NetworkPacket.h"
 //#include <functional>
-#include "Delegates.h"
+#include "Engine/Delegates.h"
 
 
 namespace Bomberman
 {
 	
 	
-class Server
+static class Server
 {
 	typedef int(*NetworkCommandGenericServer)(sockaddr_in,NetworkPacket);
 

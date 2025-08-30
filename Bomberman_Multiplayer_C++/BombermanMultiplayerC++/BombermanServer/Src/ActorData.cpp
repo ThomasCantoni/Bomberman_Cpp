@@ -1,6 +1,6 @@
 #include "ActorData.h"
-#include "NetworkBase.h"
-#include "LocalMap.h"
+#include "Engine/NetworkBase.h"
+#include "Engine/LocalMap.h"
 #include "NETCollision.h"
 #include "NETRigidBody.h"
 #include "Server.h"
@@ -8,7 +8,7 @@ namespace Bomberman
 {
 
 
-
+	
 ActorData::ActorData(float x, float y, float w, float h)
 {
 	

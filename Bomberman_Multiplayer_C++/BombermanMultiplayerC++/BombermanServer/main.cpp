@@ -12,12 +12,12 @@
 
 
 #include <iostream>
-#include "BombermanCore.h"
+#include "Engine/BombermanCore.h"
 #include "Src/Server.h"
-int main(int argc, char* args[])
+int main(int argc, char** args)
 {
 	Server::Initialize("127.0.0.1", 8888, 0);
-	Server::Run();
+	//Server::Run();
 	
 	
 }

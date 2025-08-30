@@ -70,6 +70,9 @@ namespace Bomberman
 		std::cout << "x :" << transform.GetPosition().x << "\n";
 		std::cout << "y :" << transform.GetPosition().y << "\n";
 
+
+		// the next line of code has no effect locally, the transform object is only used to send info
+		// to the server!!!!
 		transform.AddVelocity(velocity*BombermanTime::DeltaTime*speed);;
 
 		
@@ -327,10 +330,16 @@ namespace Bomberman
 		auto velocityData = std::make_shared<SerialData>(24);
 		
 		
-		ByteConverter::BytesAppend(velocityData->data, 0, NETCOMMANDType::PlayerInput);
-		ByteConverter::BytesAppend(velocityData->data, 4, ID);
-		ByteConverter::BytesAppend(velocityData->data,8, 24);
+		ByteConverter::BytesAppend(velocityData->data, 0, NETCOMMANDType::PlayerInput); // command id
+		ByteConverter::BytesAppend(velocityData->data, 4, ID); // player id
+		ByteConverter::BytesAppend(velocityData->data,8, 24); // packet length
 
+		Vector2 currentVel = velocity;
+		if (velocity.Magnitude() > 0.1f)
+		{
+			std::cout << "AOOOOOO QUI SE MOVE" << "\n";
+		}
+		
 		ByteConverter::BytesAppend(velocityData->data, 12, PlayerInputType::Movement);
 		ByteConverter::BytesAppend(velocityData->data, 16, velocity.x);
 		ByteConverter::BytesAppend(velocityData->data, 20, velocity.y);

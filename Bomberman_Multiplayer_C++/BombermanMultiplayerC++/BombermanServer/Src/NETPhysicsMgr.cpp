@@ -61,7 +61,14 @@ namespace Bomberman
 		while (iterator != items.end())
 		{
 			if ((*iterator) != nullptr)
+			{
 				(*iterator)->Update();
+				if ((*iterator)->Owner->GetID() == 0x1c)
+				{
+					Vector2 currentPos = (*iterator)->GetPosition();
+					std::cout << "PLAYER COORD: " << currentPos.x << " " << currentPos.y << "\n";
+				}
+			}
 
 			iterator++;
 		}

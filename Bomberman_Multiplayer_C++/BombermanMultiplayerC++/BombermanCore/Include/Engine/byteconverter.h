@@ -5,6 +5,7 @@
 #include <array>
 #include <sstream>
 
+
 union {
     float f;
     unsigned long ul;

@@ -23,7 +23,7 @@ namespace Bomberman
 	{
 
 	public:
-		Transform transform; // for render purposes, position is mostly decided by the server
+		Transform transform; // for render purposes, final position is decided by the server
 		SDL_Texture* texture;
 		int ID;
 

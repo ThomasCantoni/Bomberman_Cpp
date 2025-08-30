@@ -14,7 +14,9 @@
 *.userosscache
 *.sln.docstates
 *.env
-
+*.tlog
+*.log
+*\*.tlog
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

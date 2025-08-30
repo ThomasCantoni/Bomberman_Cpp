@@ -61,7 +61,7 @@ int main(int argc, char** argv)
         {
             player->ID = localPlayerID;
            player->transform.SetDimensions(dim);
-            //std::cout <<"POSIZIONI "<< dim.x << " : " << dim.y << "\n";
+            std::cout <<"POSIZIONI "<< dim.x << " : " << dim.y << "\n";
            player->transform.SetPosition(pos);
             MapManager::LoadMap(mapID);
 

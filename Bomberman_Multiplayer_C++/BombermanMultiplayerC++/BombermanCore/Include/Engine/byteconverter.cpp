@@ -226,8 +226,8 @@ int ByteConverter::BytesToInt(const unsigned char* buffer, int startIndex, bool 
 int ByteConverter::BytesToInt(const std::vector<unsigned char>* buffer, int startIndex, bool BigEndian)
 {
 
-	ByteConverter::BytesToInt(buffer->data(), startIndex, BigEndian);
-	return 0;
+	return ByteConverter::BytesToInt(buffer->data(), startIndex, BigEndian);
+	
 }
 int ByteConverter::BytesToInt(const std::shared_ptr<std::vector<unsigned char>> buffer, int startIndex, bool BigEndian)
 {

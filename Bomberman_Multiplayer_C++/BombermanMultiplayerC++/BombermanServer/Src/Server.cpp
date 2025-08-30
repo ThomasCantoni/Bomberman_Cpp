@@ -3,15 +3,15 @@
 #include <sstream>
 #include <fstream>
 #include <time.h>
-#include "LocalMap.h"
-#include "Player.h"
+#include "Engine/LocalMap.h"
+#include "Engine/MapManager.h"
+#include "Engine/Player.h"
 
 
 //#include "NETMap.h"
 #include "NETPhysicsMgr.h"
 namespace Bomberman
 {
-
 	int							Server::currentMap;
 	SOCKET						Server::ServerSocket;
 	sockaddr_in					Server::IncomingClient;
@@ -36,6 +36,7 @@ namespace Bomberman
 
 	void Server::Initialize(std::string address, int port,int mapIndex, int max_packet_size)
 	{
+		
 		MapNames.push_back("..\\BombermanCore\\Include\\Maps\\map0.txt");
 
 #pragma region SocketInit
@@ -107,10 +108,12 @@ namespace Bomberman
 
 		message.reserve(MAX_PACKET_SIZE);
 		message.resize(message.capacity());
+		
 
 	}
 
 		
+	
 	
 	int Server::SetMap(int MapIndex)
 	{
@@ -244,6 +247,7 @@ namespace Bomberman
 		}
 		
 	}
+	
 	int Server::LoadMap(int MapIndex)
 	{
 		std::ifstream my_file;
@@ -320,7 +324,7 @@ namespace Bomberman
 		actorInQuestion->LastPacketDate = std::time(0);
 		
 		int remainingBytes = length;
-		for (auto i =  message->begin();i != message->end();++i)
+		for (auto i =  message->begin();i != message->end();i++)
 		{
 			NetworkPacket currentCommand = (*i);
 			if (remainingBytes > 0)
@@ -352,19 +356,20 @@ namespace Bomberman
 		//Vector2 pos = DEFAULT_POS;
 
 		//Vector2 dim = DEFAULT_DIM;
-		
-		w = 64;
-		h = 64;
+		x = DEFAULT_POS.x;
+		y = DEFAULT_POS.y;
+		w = DEFAULT_DIM.x;
+		h = DEFAULT_DIM.y;
 		unsigned int key = static_cast<unsigned int>(s.sin_addr.S_un.S_addr);
 		int ID =(int)ObjectsToSync.size();
 
 		std::shared_ptr<std::vector<unsigned char>> Welcome = std::make_shared<std::vector<unsigned char>>(4*6);
 		ByteConverter::BytesAppend(Welcome, 0, ByteConverter::IntToBytes(ID),4);
 		ByteConverter::BytesAppend(Welcome, 4, ByteConverter::IntToBytes(currentMap),4);
-		ByteConverter::BytesAppend(Welcome, 8, ByteConverter::FloatToBytes(DEFAULT_POS.x),4);
-		ByteConverter::BytesAppend(Welcome, 12,ByteConverter::FloatToBytes(DEFAULT_POS.y),4);
-		ByteConverter::BytesAppend(Welcome, 16,ByteConverter::FloatToBytes(DEFAULT_DIM.x),4);
-		ByteConverter::BytesAppend(Welcome, 20,ByteConverter::FloatToBytes(DEFAULT_DIM.y),4);
+		ByteConverter::BytesAppend(Welcome, 8, ByteConverter::FloatToBytes(x),4);
+		ByteConverter::BytesAppend(Welcome, 12,ByteConverter::FloatToBytes(y),4);
+		ByteConverter::BytesAppend(Welcome, 16,ByteConverter::FloatToBytes(w),4);
+		ByteConverter::BytesAppend(Welcome, 20,ByteConverter::FloatToBytes(h),4);
 
 		
 		// TODO: ID + MAP_ID + COLLIDER
@@ -398,10 +403,10 @@ namespace Bomberman
 		for (auto i = ObjectsToSync.begin(); i != ObjectsToSync.end(); ++i)
 		{
 			int currentID = (*i).first;
-			/*if (currentID == 0x1c)
-			{
-				std::cout << "Stop";
-			}*/
+			//if (currentID == 0x1c)
+			//{
+			//	std::cout << "Stop";
+			//}
 			
 			std::shared_ptr<SerialData> transform = (*i).second->GetPacketTransform();
 			
@@ -431,12 +436,17 @@ namespace Bomberman
 	}
 	int Server::ReceiveInput(sockaddr_in client,const NetworkPacket msg)
 	{
+		
 		std::shared_ptr<PlayerData> p = knownClients[client.sin_addr.S_un.S_addr];
-		PlayerInputType ID = static_cast<PlayerInputType>(ByteConverter::BytesToInt(msg.Payload->data, 4));
+
+		int playerID = ByteConverter::BytesToInt(msg.Payload->data, 8);
+		
+		PlayerInputType ID = static_cast<PlayerInputType>(playerID);
 		switch (ID)
 		{
 			case Movement:
 			{
+				std::cout << "MOVEMENT! \n";
 				int ID = ActorToID.at(p.get());
 				float x = ByteConverter::BytesToFloat(msg.Payload->data->data(), 8, false);
 				float y = ByteConverter::BytesToFloat(msg.Payload->data->data(), 12, false);
@@ -466,4 +476,5 @@ namespace Bomberman
 		}
 		return 16;
 	}
+	
 }
